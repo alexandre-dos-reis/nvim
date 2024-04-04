@@ -1,5 +1,10 @@
 # Nvim Config
 
+## Todo
+
+- [Try to use nix to lsp and treesitter](https://github.com/Kidsan/nixos-config/tree/main/home/programs/neovim)
+  - Add `lsp` and `treesitter` files.
+
 ## Undercurl
 
 - `echo $TERM` has to be `xterm-256color` inside TMUX.
