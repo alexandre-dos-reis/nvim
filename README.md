@@ -4,6 +4,8 @@
 
 - [Try to use nix to lsp and treesitter](https://github.com/Kidsan/nixos-config/tree/main/home/programs/neovim)
   - Add `lsp` and `treesitter` files.
+- Replace nodejs with bun for lsp
+  - [Example](https://github.com/letieu/nvim-config/commit/237a314d06f87c528582d6da50d84ecac0fa7b27)
 
 ## Undercurl
 

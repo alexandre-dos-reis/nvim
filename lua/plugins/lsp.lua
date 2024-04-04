@@ -39,13 +39,14 @@ return {
         -- "tailwindcss-language-server",
         -- "taplo",
         -- "templ",
-        -- "typescript-language-server",
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
     opts = {
+      -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+      ---@type lspconfig.options
       servers = {
         nixd = {
           mason = false,

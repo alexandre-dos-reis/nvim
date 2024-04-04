@@ -7,7 +7,10 @@ return {
   opts = function()
     local c = require("solarized-osaka.colors").setup()
 
-    local bg = c.base02
+    local background = c.base02
+    local unselectedBg = c.base03
+    local unselectedFg = c.base01
+    -- local red = "#ff0000"
 
     -- https://github.com/akinsho/bufferline.nvim/blob/main/lua/bufferline/config.lua#L274
     return {
@@ -18,32 +21,42 @@ return {
         show_close_icon = false,
       },
       highlights = {
+        background = {
+          fg = unselectedFg,
+          bg = unselectedBg,
+        },
         fill = {
-          bg = bg,
+          bg = background,
         },
         group_separator = {
-          bg = bg,
+          bg = background,
         },
         group_label = {
-          fg = bg,
+          fg = background,
         },
         separator_selected = {
-          fg = bg,
+          fg = background,
         },
         separator_visible = {
-          fg = bg,
+          fg = background,
+          bg = unselectedBg,
         },
         separator = {
-          fg = bg,
+          fg = background,
+          bg = unselectedBg,
         },
         tab_separator = {
-          fg = bg,
+          fg = background,
+          bg = unselectedBg,
         },
         tab_separator_selected = {
-          fg = bg,
+          fg = background,
         },
         offset_separator = {
-          bg = bg,
+          bg = background,
+        },
+        modified = {
+          bg = unselectedBg,
         },
       },
     }
