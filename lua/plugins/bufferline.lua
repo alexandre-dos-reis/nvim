@@ -7,7 +7,7 @@ return {
   opts = function()
     local c = require("solarized-osaka.colors").setup()
 
-    local background = c.base02
+    local topbarBg = c.base02
     local unselectedBg = c.base03
     local unselectedFg = c.base01
     local warningFg = c.yellow
@@ -30,38 +30,38 @@ return {
           bg = unselectedBg,
         },
         fill = {
-          bg = background,
+          bg = topbarBg,
         },
         group_separator = {
-          bg = background,
+          bg = topbarBg,
         },
         group_label = {
-          fg = background,
+          fg = topbarBg,
           bg = unselectedBg,
         },
         separator_selected = {
-          fg = background,
+          fg = topbarBg,
         },
         separator_visible = {
-          fg = background,
+          fg = topbarBg,
           bg = unselectedBg,
         },
         separator = {
-          fg = background,
+          fg = topbarBg,
           bg = unselectedBg,
         },
         tab_selected = {
           bold = true,
         },
         tab_separator = {
-          fg = background,
+          fg = topbarBg,
           bg = unselectedBg,
         },
         tab_separator_selected = {
-          fg = background,
+          fg = topbarBg,
         },
         offset_separator = {
-          bg = background,
+          bg = topbarBg,
         },
         modified = {
           bg = unselectedBg,
@@ -73,7 +73,6 @@ return {
           fg = warningFg,
           bg = unselectedBg,
           italic = true,
-          bold = true,
         },
         warning_selected = {
           fg = warningFg,
