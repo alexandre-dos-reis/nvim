@@ -35,6 +35,7 @@ return {
           layout_strategy = "flex",
           layout_config = {
             height = 40,
+            -- TODO: find a way to limit max size.
             width = 150,
           },
           wrap_results = true,
