@@ -23,6 +23,7 @@ return {
       "sql",
       "nix",
       "just",
+      "vimdoc",
       -- "markdown",
       -- "markdown_inline",
     },
