@@ -72,6 +72,8 @@ return {
         warning = {
           fg = warningFg,
           bg = unselectedBg,
+          italic = true,
+          bold = true,
         },
         warning_selected = {
           fg = warningFg,
@@ -79,6 +81,8 @@ return {
         error = {
           fg = errorFg,
           bg = unselectedBg,
+          italic = true,
+          bold = true,
         },
         error_selected = {
           fg = errorFg,
