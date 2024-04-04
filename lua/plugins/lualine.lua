@@ -4,6 +4,7 @@ return {
   opts = {
     options = {
       theme = "solarized_dark",
+      globalstatus = true,
     },
   },
 }
