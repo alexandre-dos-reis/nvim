@@ -8,7 +8,7 @@ return {
     local c = require("solarized-osaka.colors").setup()
 
     local topbarBg = c.base02
-    local unselectedBg = c.base03
+    local unselectedBg = "#002933" -- Very close to base03
     local unselectedFg = c.base01
     local warningFg = c.yellow
     local errorFg = c.red
@@ -73,6 +73,7 @@ return {
           fg = warningFg,
           bg = unselectedBg,
           italic = true,
+          bold = true,
         },
         warning_selected = {
           fg = warningFg,
