@@ -64,7 +64,7 @@ return {
       opts = function()
         local theme = require("solarized-osaka.colors").setup()
 
-        vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = theme.base00 })
+        vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = theme.cyan500 })
         return {
           symbol = symbol,
           options = { try_as_border = true },
