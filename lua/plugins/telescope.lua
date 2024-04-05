@@ -36,7 +36,7 @@ return {
           layout_config = {
             height = 40,
             -- TODO: find a way to limit max size.
-            width = 150,
+            width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
           },
           wrap_results = true,
         })
