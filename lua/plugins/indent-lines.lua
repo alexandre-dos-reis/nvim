@@ -1,4 +1,4 @@
-local symbol = "·"
+local symbol_char = "·"
 
 return {
   {
@@ -6,35 +6,24 @@ return {
     event = "LazyFile",
     main = "ibl",
     opts = function()
-      local odd = "RainbowOdd"
-      -- local even = "RainbowEven"
-      -- local third = "RainbowThird"
-
       local hooks = require("ibl.hooks")
       local theme = require("solarized-osaka.colors").setup()
 
-      -- https://hslpicker.com
-      local oddColor = theme.base02
-      -- local evenColor = theme.base02
-      -- local thirdColor = theme.cyan700
+      local color = theme.base02
+      local highlightName = "IndentBlankline"
 
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, odd, { fg = oddColor })
-        -- vim.api.nvim_set_hl(0, even, { fg = evenColor })
-        -- vim.api.nvim_set_hl(0, third, { fg = thirdColor })
+        vim.api.nvim_set_hl(0, highlightName, { fg = color })
       end)
 
       local highlight = {
-        odd,
-        -- even,
-        -- third,
-        -- even,
+        highlightName,
       }
 
       return {
         indent = {
-          tab_char = symbol,
-          char = symbol,
+          tab_char = symbol_char,
+          char = symbol_char,
           highlight = highlight,
         },
         scope = { enabled = false },
@@ -66,7 +55,7 @@ return {
 
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = theme.cyan500 })
         return {
-          symbol = symbol,
+          symbol = symbol_char,
           options = { try_as_border = true },
           draw = {
             delay = 0,
