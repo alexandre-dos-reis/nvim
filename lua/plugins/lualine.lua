@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  enabled = false,
+  -- enabled = false,
   opts = {
     options = {
       theme = "solarized_dark",
