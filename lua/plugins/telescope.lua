@@ -56,8 +56,8 @@ return {
 
     opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
       wrap_results = true,
-      layout_strategy = "horizontal",
-      layout_config = { prompt_position = "top" },
+      layout_strategy = "flex",
+      layout_config = { prompt_position = "top", height = 40 },
       sorting_strategy = "ascending",
       winblend = 0,
       mapping = {
@@ -76,7 +76,7 @@ return {
     opts.extensions = {
       file_browser = {
         theme = "dropdown",
-        hijack_netrw = true,
+        -- hijack_netrw = true,
         mappings = {
           ["n"] = {
             ["c"] = fb_actions.create,
