@@ -87,7 +87,8 @@ return {
         has = "definition",
       }
       keys[#keys + 1] = { "gt", false, mode = "n" }
-      keys[#keys + 1] = { "<leader>lsp", ":LspStop<CR> | :LspStart<CR>", mode = "n" }
+      keys[#keys + 1] =
+        { "<leader>lsp", ":LspRestart<CR> | :echo 'Reloading LSP...'<CR>", desc = "Restart LSP", mode = "n" }
     end,
   },
 }
