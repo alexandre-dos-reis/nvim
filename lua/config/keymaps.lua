@@ -27,8 +27,8 @@ k.set("n", "<leader>+", "<C-a>")
 k.set("n", "<leader>-", "<C-x>")
 
 -- move selection in visual mode
-k.set("v", "J", ":m '>+1<CR>gv=gv")
-k.set("v", "K", ":m '<-2<CR>gv=gv")
+k.set("v", "J", ":m '>+1<CR>gv=gv", opts)
+k.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- keep yank in the buffer on paste
 k.set("x", "<leader>p", '"_dP')
