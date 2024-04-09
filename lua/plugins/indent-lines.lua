@@ -1,3 +1,17 @@
+local excluded_filetypes = {
+  "help",
+  "alpha",
+  "dashboard",
+  "neo-tree",
+  "Trouble",
+  "trouble",
+  "lazy",
+  "mason",
+  "notify",
+  "toggleterm",
+  "lazyterm",
+}
+
 local symbol_char = "·"
 
 return {
@@ -28,19 +42,7 @@ return {
         },
         scope = { enabled = false },
         exclude = {
-          filetypes = {
-            "help",
-            "alpha",
-            "dashboard",
-            "neo-tree",
-            "Trouble",
-            "trouble",
-            "lazy",
-            "mason",
-            "notify",
-            "toggleterm",
-            "lazyterm",
-          },
+          filetypes = excluded_filetypes,
         },
       }
     end,
@@ -67,19 +69,7 @@ return {
       end,
       init = function()
         vim.api.nvim_create_autocmd("FileType", {
-          pattern = {
-            "help",
-            "alpha",
-            "dashboard",
-            "neo-tree",
-            "Trouble",
-            "trouble",
-            "lazy",
-            "mason",
-            "notify",
-            "toggleterm",
-            "lazyterm",
-          },
+          pattern = excluded_filetypes,
           callback = function()
             ---@diagnostic disable-next-line: inject-field
             vim.b.miniindentscope_disable = true
