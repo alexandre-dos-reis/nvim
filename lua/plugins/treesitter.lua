@@ -6,6 +6,7 @@ return {
   },
   opts = {
     ensure_installed = {
+      "lua",
       "tsx",
       "typescript",
       "javascript",
@@ -16,6 +17,7 @@ return {
       "scss",
       "fish",
       "gitignore",
+      "markdown",
       "graphql",
       "http",
       "php",
