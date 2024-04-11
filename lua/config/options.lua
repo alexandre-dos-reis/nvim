@@ -37,3 +37,9 @@ o.foldenable = false
 o.splitright = true
 o.splitbelow = true
 o.conceallevel = 1
+
+-- Custom commands
+vim.api.nvim_create_user_command("SetAndFormat", function(opts)
+  vim.cmd("set filetype=" .. opts["args"])
+  vim.cmd("lua vim.lsp.buf.format()")
+end, { nargs = "*" })
