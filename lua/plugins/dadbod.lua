@@ -13,6 +13,8 @@ return {
   init = function()
     -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
+    local setPreviewHeight = "set previewheight=" .. math.floor(vim.api.nvim_win_get_height(0) * 0.7)
+    vim.cmd(setPreviewHeight)
   end,
   keys = {
     {
