@@ -5,14 +5,13 @@ return {
     { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
   },
   opts = function()
-    local c = require("solarized-osaka.colors").setup()
+    local theme = require("solarized-osaka.colors").setup()
 
-    local topbarBg = c.base02
+    local topbarBg = theme.base02
     local unselectedBg = "#002933" -- Very close to base03
-    local unselectedFg = c.base01
-    local warningFg = c.yellow
-    local errorFg = c.red
-    -- local red = "#ff0000"
+    local unselectedFg = theme.base01
+    local warningFg = theme.yellow
+    local errorFg = theme.red
 
     -- https://github.com/akinsho/bufferline.nvim/blob/main/lua/bufferline/config.lua#L274
     return {
