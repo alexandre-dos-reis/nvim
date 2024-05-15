@@ -38,6 +38,10 @@ o.splitright = true
 o.splitbelow = true
 o.conceallevel = 1
 
+-- Globals
+
+vim.g.have_nerd_font = true
+
 -- Custom commands
 vim.api.nvim_create_user_command("SetAndFormat", function(opts)
   vim.cmd("set filetype=" .. opts["args"])

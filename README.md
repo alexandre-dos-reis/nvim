@@ -24,5 +24,6 @@
 
 ## Resources:
 
+- [ThePrimeahen config](https://github.com/ThePrimeagen/init.lua/tree/master)
 - [Neovim - Bufferline Buffers vs Tabs vs Windows Explanation](https://www.youtube.com/watch?v=vJAmjAax2H0)
 - [Why do Vim experts prefer buffers over tabs?](https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs/26710166#26710166)

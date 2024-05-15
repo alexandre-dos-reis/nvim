@@ -41,7 +41,11 @@ k.set("n", "<leader>tp", ":tabp<CR>")
 
 -- tmux-sessionizer
 k.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-k.set("n", "<C-w>", "<cmd>silent !tmux neww tmux-windownizer<CR>")
+-- k.set("n", "<C-w>", "<cmd>silent !tmux neww tmux-windownizer<CR>")
+
+-- quicklist
+k.set("n", "<C-q>", "<cmd>cnext<CR>zz")
+k.set("n", "Q", "<cmd>cprev<CR>zz")
 
 -- https://www.reddit.com/r/neovim/comments/wi4uf3/how_do_i_insert_current_date_or_time/
 k.set("n", "<leader>ct", ":pu=strftime('%Y-%m-%d')<CR>", { desc = "Get today's data in yy-mm-dd format." })
