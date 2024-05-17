@@ -12,6 +12,7 @@ return {
     local unselectedFg = theme.base01
     local warningFg = theme.yellow
     local errorFg = theme.red
+    local hintFg = theme.blue
 
     -- https://github.com/akinsho/bufferline.nvim/blob/main/lua/bufferline/config.lua#L274
     return {
@@ -76,6 +77,10 @@ return {
         },
         warning_selected = {
           fg = warningFg,
+        },
+        hint = {
+          fg = hintFg,
+          bg = unselectedBg,
         },
         error = {
           fg = errorFg,
