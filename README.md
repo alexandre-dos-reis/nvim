@@ -1,5 +1,7 @@
 # Nvim Config
 
+**Config for the neovim 0.10 version**
+
 ## Todo
 
 - [Try to use nix to lsp and treesitter](https://github.com/Kidsan/nixos-config/tree/main/home/programs/neovim)
