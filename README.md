@@ -1,6 +1,4 @@
-# Nvim Config
-
-**Config for the neovim 0.10 version**
+# Nvim Config - v0.10
 
 ## Todo
 
