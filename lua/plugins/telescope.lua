@@ -29,6 +29,7 @@ return {
           path = "%:p:h",
           cwd = telescope_buffer_dir(),
           respect_gitignore = false,
+          select_buffer = true,
           hidden = true,
           grouped = true,
           initial_mode = "normal",
