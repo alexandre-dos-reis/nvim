@@ -1,4 +1,4 @@
-# Nvim Config - v0.10
+# Nvim Config `0.10` version
 
 ## Todo
 
