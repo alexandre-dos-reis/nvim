@@ -25,6 +25,7 @@ return {
       "sql",
       "nix",
       "just",
+      "terraform",
     },
     highlight = {
       enable = true,
