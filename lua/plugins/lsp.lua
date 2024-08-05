@@ -44,16 +44,16 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-      ---@type lspconfig.options
-      servers = {
-        nixd = {
-          mason = false,
-        },
-      },
-    },
-    init = function()
+    -- opts = {
+    --   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    --   ---@type lspconfig.options
+    --   servers = {
+    --     nixd = {
+    --       mason = false,
+    --     },
+    --   },
+    -- },
+    opts = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- https://www.lazyvim.org/plugins/lsp
       -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/keymaps.lua
