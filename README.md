@@ -1,4 +1,6 @@
-# Nvim Config `nightly` version
+# Nvim Config
+
+- version: NVIM v0.11.0-nightly+e820474
 
 ## Todo
 

@@ -53,7 +53,7 @@ return {
     --     },
     --   },
     -- },
-    opts = function()
+    opts = function(_, opts)
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- https://www.lazyvim.org/plugins/lsp
       -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/keymaps.lua
@@ -89,6 +89,8 @@ return {
       keys[#keys + 1] = { "gt", false, mode = "n" }
       keys[#keys + 1] =
         { "<leader>lsp", ":LspRestart<CR> | :echo 'Reloading LSP...'<CR>", desc = "Restart LSP", mode = "n" }
+
+      opts.inlay_hints.enabled = false
     end,
   },
 }
