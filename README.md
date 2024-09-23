@@ -2,6 +2,10 @@
 
 - version: NVIM v0.11.0-nightly+e820474
 
+## Installation
+
+Apply git hooks with this command : `git config --local core.hooksPath .githooks/`
+
 ## Todo
 
 - [Try to use nix to lsp and treesitter](https://github.com/Kidsan/nixos-config/tree/main/home/programs/neovim)
