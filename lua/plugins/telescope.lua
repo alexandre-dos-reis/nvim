@@ -32,13 +32,15 @@ return {
           select_buffer = true,
           hidden = true,
           grouped = true,
+          previewer = false,
           initial_mode = "normal",
-          layout_strategy = "flex",
-          layout_config = {
-            height = 40,
-            -- TODO: find a way to limit max size.
-            width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
-          },
+          -- layout_strategy = "flex",
+          layout_config = { height = 40 },
+          -- layout_config = {
+          --   height = 40,
+          --   -- TODO: find a way to limit max size.
+          --   width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+          -- },
           wrap_results = true,
         })
       end,
