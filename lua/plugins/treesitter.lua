@@ -26,6 +26,7 @@ return {
       "nix",
       "just",
       "terraform",
+      "zig",
     },
     highlight = {
       enable = true,

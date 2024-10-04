@@ -1,35 +1,40 @@
 return {
   "folke/noice.nvim",
-  opts = {
-    views = {
-      cmdline_popup = {
-        position = {
-          row = "40%",
-          height = "50%",
-        },
-      },
-    },
-    routes = {
+  opts = function(_, opts)
+    table.insert(opts, {
       {
-        filter = {
-          event = "msg_show",
-          kind = "",
-          find = "written",
+        views = {
+          cmdline_popup = {
+            position = {
+              row = "40%",
+              height = "50%",
+            },
+          },
         },
-        opts = { skip = true },
-      },
-      {
-        filter = {
-          event = "notify",
-          find = "No information available",
+        routes = {
+          {
+            filter = {
+              event = "msg_show",
+              kind = "",
+              find = "written",
+            },
+            opts = { skip = true },
+          },
+          {
+            filter = {
+              event = "notify",
+              find = "No information available",
+            },
+            opts = { skip = true },
+          },
         },
-        opts = { skip = true },
       },
-    },
-    presets = {
+    })
+
+    opts.presets = {
       lsp_doc_border = true,
       bottom_search = false,
       inc_rename = true,
-    },
-  },
+    }
+  end,
 }

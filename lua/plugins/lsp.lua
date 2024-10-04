@@ -14,6 +14,7 @@ return {
         "graphql-language-service-cli",
         "marksman",
         "clangd",
+        "zls",
 
         -- Checks that the followinf are working...
         -- "astro-language-server",
@@ -48,8 +49,8 @@ return {
     --   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     --   ---@type lspconfig.options
     --   servers = {
-    --     nixd = {
-    --       mason = false,
+    --     zls = {
+    --       enabled = false,
     --     },
     --   },
     -- },
