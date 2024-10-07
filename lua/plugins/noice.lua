@@ -30,7 +30,7 @@ return {
       },
     }
 
-    opts.preset = {
+    opts.presets = {
       lsp_doc_border = true,
       bottom_search = false,
       inc_rename = true,
