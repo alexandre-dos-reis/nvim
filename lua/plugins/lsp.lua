@@ -45,15 +45,6 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    -- opts = {
-    --   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    --   ---@type lspconfig.options
-    --   servers = {
-    --     zls = {
-    --       enabled = false,
-    --     },
-    --   },
-    -- },
     opts = function(_, opts)
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- https://www.lazyvim.org/plugins/lsp
@@ -92,6 +83,16 @@ return {
         { "<leader>lsp", ":LspRestart<CR> | :echo 'Reloading LSP...'<CR>", desc = "Restart LSP", mode = "n" }
 
       opts.inlay_hints.enabled = false
+      opts.servers.nixd = {
+        settings = {
+          nixpkgs = {
+            expr = "import <nixpkgs> { }",
+          },
+          formatting = {
+            command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
+          },
+        },
+      }
     end,
   },
 }

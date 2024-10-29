@@ -9,6 +9,7 @@ return {
   },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "folke/flash.nvim", enabled = false },
+  { "echasnovski/mini.pairs", enabled = false },
   {
     -- Conflict with git config
     "gbprod/yanky.nvim",
