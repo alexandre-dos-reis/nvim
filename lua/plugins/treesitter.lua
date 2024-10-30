@@ -1,9 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    -- Golang Templ files
-    "vrischmann/tree-sitter-templ",
-  },
   opts = {
     ensure_installed = {
       "lua",
@@ -41,6 +37,5 @@ return {
         mdx = "mdx",
       },
     })
-    -- vim.treesitter.language.register("markdown", "mdx")
   end,
 }

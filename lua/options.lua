@@ -4,6 +4,9 @@
 
 local o = vim.o
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 o.encoding = "utf-8"
 o.number = true
 o.fileencoding = "utf-8"

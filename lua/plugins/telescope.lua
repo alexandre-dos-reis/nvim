@@ -19,33 +19,6 @@ return {
       end,
     },
     {
-      "<leader>e",
-      function()
-        local telescope = require("telescope")
-        local function telescope_buffer_dir()
-          return vim.fn.expand("%:p:h")
-        end
-        telescope.extensions.file_browser.file_browser({
-          path = "%:p:h",
-          cwd = telescope_buffer_dir(),
-          respect_gitignore = false,
-          select_buffer = true,
-          hidden = true,
-          grouped = true,
-          previewer = false,
-          initial_mode = "normal",
-          -- layout_strategy = "flex",
-          layout_config = { height = 40 },
-          -- layout_config = {
-          --   height = 40,
-          --   -- TODO: find a way to limit max size.
-          --   width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
-          -- },
-          wrap_results = true,
-        })
-      end,
-    },
-    {
       "<leader>fs",
       function()
         require("telescope.builtin").live_grep()
