@@ -32,6 +32,7 @@ return {
             -- disables netrw and use telescope-file-browser in its place
             initial_mode = "normal",
             hijack_netrw = true,
+            layout_strategy = "flex",
             mappings = {
               ["n"] = {
                 ["c"] = fb_actions.create,
