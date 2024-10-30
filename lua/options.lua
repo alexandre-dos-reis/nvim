@@ -8,6 +8,7 @@ o.encoding = "utf-8"
 o.number = true
 o.fileencoding = "utf-8"
 
+o.signcolumn = "yes"
 o.title = true
 o.autoindent = true
 o.smartindent = true
