@@ -4,9 +4,6 @@
 
 local o = vim.o
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 o.encoding = "utf-8"
 o.number = true
 o.fileencoding = "utf-8"
@@ -19,7 +16,6 @@ o.backup = false
 o.showcmd = true
 o.cmdheight = 1
 o.laststatus = 3
-o.expandtab = true
 o.scrolloff = 10
 o.relativenumber = true
 o.shell = "fish"
@@ -27,10 +23,12 @@ o.clipboard = "unnamedplus"
 -- o.backupskip = { "/tmp/*", "/private/tmp/*" }
 o.inccommand = ""
 o.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
+o.expandtab = true
 o.smarttab = true
 o.breakindent = true
 o.shiftwidth = 2
 o.tabstop = 2
+o.softtabstop = 2
 o.wrap = false -- No Wrap lines
 -- o.backspace = { "start", "eol", "indent" }
 o.swapfile = false

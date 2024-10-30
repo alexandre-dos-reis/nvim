@@ -1,80 +1,63 @@
 return {
-  "telescope.nvim",
-  dependencies = {
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-    },
-    "nvim-telescope/telescope-file-browser.nvim",
-  },
-  keys = {
-    {
-      "<leader>ff",
-      function()
-        require("telescope.builtin").find_files({
-          cwd = vim.loop.cwd(),
-          hidden = true,
-          file_ignore_patterns = { "^%.git/", "^%node_modules/", "^%.yarn" },
-        })
-      end,
-    },
-    {
-      "<leader>fs",
-      function()
-        require("telescope.builtin").live_grep()
-      end,
-    },
-  },
-  config = function(_, opts)
-    local telescope = require("telescope")
-    local actions = require("telescope.actions")
-    local fb_actions = require("telescope").extensions.file_browser.actions
-
-    opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
-      wrap_results = true,
-      layout_strategy = "flex",
-      layout_config = { prompt_position = "top", height = 40 },
-      sorting_strategy = "ascending",
-      winblend = 0,
-      mapping = {
-        n = {},
-      },
-    })
-    opts.pickers = {
-      diagnostics = {
-        theme = "ivy",
-        initial_mode = "normal",
-        layout_config = {
-          preview_cutoff = 9999,
-        },
-      },
-    }
-    opts.extensions = {
-      file_browser = {
-        theme = "dropdown",
-        -- hijack_netrw = true,
-        mappings = {
-          ["n"] = {
-            ["c"] = fb_actions.create,
-            ["h"] = fb_actions.goto_parent_dir,
-            ["<C-u>"] = function(prompt_bufnr)
-              for _ = 1, 10 do
-                actions.move_selection_previous(prompt_bufnr)
-              end
-            end,
-            ["<C-d>"] = function(prompt_bufnr)
-              for _ = 1, 10 do
-                actions.move_selection_next(prompt_bufnr)
-              end
-            end,
-            ["<PageUp>"] = actions.preview_scrolling_up,
-            ["<PageDown>"] = actions.preview_scrolling_down,
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.5",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim", "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({}),
           },
         },
-      },
-    }
-    telescope.setup(opts)
-    require("telescope").load_extension("fzf")
-    require("telescope").load_extension("file_browser")
-  end,
+      })
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+      vim.keymap.set("n", "<leader>sf", builtin.live_grep, {})
+
+      require("telescope").load_extension("ui-select")
+    end,
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      local actions = require("telescope.actions")
+      local fb_actions = require("telescope").extensions.file_browser.actions
+
+      require("telescope").setup({
+        extensions = {
+          file_browser = {
+            theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            initial_mode = "normal",
+            hijack_netrw = true,
+            mappings = {
+              ["n"] = {
+                ["c"] = fb_actions.create,
+                ["h"] = fb_actions.goto_parent_dir,
+                ["<C-u>"] = function(prompt_bufnr)
+                  for _ = 1, 10 do
+                    actions.move_selection_previous(prompt_bufnr)
+                  end
+                end,
+                ["<C-d>"] = function(prompt_bufnr)
+                  for _ = 1, 10 do
+                    actions.move_selection_next(prompt_bufnr)
+                  end
+                end,
+                ["<PageUp>"] = actions.preview_scrolling_up,
+                ["<PageDown>"] = actions.preview_scrolling_down,
+              },
+            },
+          },
+        },
+      })
+      -- To get telescope-file-browser loaded and working with telescope,
+      -- you need to call load_extension, somewhere after setup function:
+      require("telescope").load_extension("file_browser")
+
+      vim.keymap.set("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+    end,
+  },
 }
