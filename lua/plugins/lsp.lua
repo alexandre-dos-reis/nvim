@@ -7,7 +7,11 @@ return {
     lspconfig.ts_ls.setup({}) -- typescript
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+    vim.keymap.set("n", "gd", function()
+      require("telescope.builtin").lsp_definitions({
+        jump_type = "tab",
+      })
+    end, {})
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
   end,
 }

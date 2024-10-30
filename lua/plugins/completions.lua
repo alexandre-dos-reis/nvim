@@ -7,14 +7,12 @@ return {
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
-      "lspkind",
     },
   },
   {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
-      local lspkind = require("lspkind")
 
       require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -41,6 +39,7 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
+          { name = "vim-dadbod-completion" },
         }, {
           { name = "buffer" },
         }),

@@ -32,8 +32,8 @@ k.set("v", "J", ":m '>+1<CR>gv=gv", opts)
 k.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- move visual when indenting
-k.set('v', '<', '<gv', opts)
-k.set('v', '>', '>gv', opts)
+k.set("v", "<", "<gv", opts)
+k.set("v", ">", ">gv", opts)
 
 -- keep yank in the buffer on paste
 k.set("x", "<leader>p", '"_dP')
