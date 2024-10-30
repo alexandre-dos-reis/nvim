@@ -13,7 +13,7 @@ k.set("n", "<C-e>", vim.diagnostic.goto_next, opts)
 k.set("n", "E", vim.diagnostic.goto_prev, opts)
 
 -- kill highlight when escape press
-k.set("n", "<Esc>", "<Esc>:noh<CR>")
+k.set("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 -- recenter screen on page up and down
 k.set("n", "<C-u>", "<C-u>zz")

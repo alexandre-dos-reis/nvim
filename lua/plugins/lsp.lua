@@ -5,6 +5,7 @@ return {
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
     lspconfig.lua_ls.setup({}) -- lua
     lspconfig.ts_ls.setup({}) -- typescript
+    lspconfig.nixd.setup({}) -- nix
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
     vim.keymap.set("n", "gd", function()
