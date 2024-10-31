@@ -14,6 +14,7 @@ Apply git hooks with this command : `git config --local core.hooksPath .githooks
   - [Example](https://github.com/letieu/nvim-config/commit/237a314d06f87c528582d6da50d84ecac0fa7b27)
 - Add [gitsign](https://github.com/lewis6991/gitsigns.nvim) in place of `dinhhuy258/git.nvim` and set keymaps.
 - Set keymaps for `Neogit`.
+- Investigate [gopher.nvim](https://github.com/olexsmir/gopher.nvim)
 
 ## Undercurl
 
