@@ -26,6 +26,7 @@ local LSPs = {
     },
   },
   ts_ls = {},
+  tailwindcss = {},
   nixd = {
     -- nix
     cmd = { "nixd" },
