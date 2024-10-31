@@ -23,6 +23,12 @@ return {
         graphql = { "prettierd" },
         lua = { "stylua" },
         nix = { "alejandra" },
+        go = {
+          -- This isn't working atm
+          -- "goimports-reviser",
+          "gofumpt",
+          "golines",
+        },
       },
       default_format_opts = {
         lsp_format = "fallback",
