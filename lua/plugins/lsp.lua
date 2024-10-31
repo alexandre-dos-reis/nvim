@@ -66,7 +66,10 @@ return {
       require("telescope.builtin").lsp_definitions({
         jump_type = "tab",
       })
-    end, {})
+    end)
+    vim.keymap.set("n", "gr", function()
+      require("telescope.builtin").lsp_references()
+    end)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
   end,
 }
