@@ -29,6 +29,7 @@ return {
           "gofumpt",
           "golines",
         },
+        rust = { "rustfmt" },
       },
       default_format_opts = {
         lsp_format = "fallback",

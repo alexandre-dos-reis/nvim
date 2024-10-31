@@ -28,6 +28,7 @@ local LSPs = {
   ts_ls = {},
   tailwindcss = {},
   gopls = {},
+  rust_analyzer = {},
   nixd = {
     -- nix
     cmd = { "nixd" },
