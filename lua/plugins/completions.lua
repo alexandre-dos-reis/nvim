@@ -11,6 +11,9 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-path",
+    },
     config = function()
       local cmp = require("cmp")
 
@@ -26,6 +29,22 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+        formatting = {
+          fields = { "abbr", "kind", "menu" },
+          format = function(entry, item)
+            local short_name = {
+              nvim_lsp = "LSP",
+              nvim_lua = "nvim",
+              path = "path",
+              buffer = "buffer",
+            }
+
+            local menu_name = short_name[entry.source.name] or entry.source.name
+            item.menu = string.format("[%s]", menu_name)
+
+            return item
+          end,
+        },
         mapping = cmp.mapping.preset.insert({
           ["<C-d"] = cmp.mapping.scroll_docs(-4),
           ["<C-u>"] = cmp.mapping.scroll_docs(4),
@@ -39,6 +58,7 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
+          { name = "path" },
           { name = "vim-dadbod-completion" },
         }, {
           { name = "buffer" },

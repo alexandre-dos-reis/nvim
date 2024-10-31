@@ -22,6 +22,7 @@ return {
         markdown = { "prettierd" },
         graphql = { "prettierd" },
         lua = { "stylua" },
+        nix = { "alejandra" },
       },
       default_format_opts = {
         lsp_format = "fallback",
