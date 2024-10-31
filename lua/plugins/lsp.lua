@@ -48,6 +48,9 @@ local LSPs = {
 
 return {
   "neovim/nvim-lspconfig",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+  },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
     local lspconfig = require("lspconfig")

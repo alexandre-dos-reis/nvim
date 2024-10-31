@@ -1,18 +1,15 @@
 return {
   {
-    "hrsh7th/cmp-nvim-lsp",
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
-    },
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-path",
+      "luckasRanarison/tailwind-tools.nvim",
+      "onsails/lspkind-nvim",
+      "L3MON4D3/LuaSnip",
+      dependencies = {
+        "saadparwaiz1/cmp_luasnip",
+        "rafamadriz/friendly-snippets",
+      },
     },
     config = function()
       local cmp = require("cmp")
@@ -30,20 +27,10 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         formatting = {
-          fields = { "abbr", "kind", "menu" },
-          format = function(entry, item)
-            local short_name = {
-              nvim_lsp = "LSP",
-              nvim_lua = "nvim",
-              path = "path",
-              buffer = "buffer",
-            }
-
-            local menu_name = short_name[entry.source.name] or entry.source.name
-            item.menu = string.format("[%s]", menu_name)
-
-            return item
-          end,
+          format = require("lspkind").cmp_format({
+            mode = "symbol_text",
+            before = require("tailwind-tools.cmp").lspkind_format,
+          }),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-d"] = cmp.mapping.scroll_docs(-4),
@@ -57,12 +44,13 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" }, -- For luasnip users.
+          { name = "luasnip" },
           { name = "path" },
           { name = "vim-dadbod-completion" },
         }, {
           { name = "buffer" },
         }),
+        completion = { completeopt = "menu,menuone,noinsert" },
       })
     end,
   },
