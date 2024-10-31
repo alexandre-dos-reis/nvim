@@ -27,9 +27,14 @@ return {
     end
 
     -- Show list in telescope
-    vim.keymap.set("n", "<leader>hh", function()
-      toggle_telescope(harpoon:list())
-    end)
+    vim.keymap.set(
+      "n",
+      "<leader>hh",
+      -- toggle_telescope(harpoon:list())
+      function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end
+    )
 
     -- Show list in telescope
     local keys = {
@@ -41,7 +46,7 @@ return {
 
     for key, numb in pairs(keys) do
       -- Select harpooned files
-      vim.keymap.set("n", ("<leader>f" .. key), function()
+      vim.keymap.set("n", ("<leader>" .. key), function()
         harpoon:list():select(numb)
       end)
 
