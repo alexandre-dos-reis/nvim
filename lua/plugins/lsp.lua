@@ -55,23 +55,27 @@ return {
   },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
+    -- TODO: For custom icon error see: https://github.com/LazyVim/LazyVim/issues/3309
     local lspconfig = require("lspconfig")
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    for lsp, config in pairs(LSPs) do
+    for lsp_name, config in pairs(LSPs) do
       config["capabilities"] = capabilities
-      lspconfig[lsp].setup(config)
+      lspconfig[lsp_name].setup(config)
     end
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+
     vim.keymap.set("n", "gd", function()
       require("telescope.builtin").lsp_definitions({
         jump_type = "tab",
       })
     end)
+
     vim.keymap.set("n", "gr", function()
       require("telescope.builtin").lsp_references()
     end)
+
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
   end,
 }
