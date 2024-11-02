@@ -5,11 +5,11 @@ return {
   opts = {
     transparent = true,
     -- on_colors = function(colors)
-    -- colors.yellow = "#FD9720"
-    -- colors.yellow300 = "#FD9720"
-    -- colors.yellow500 = "#FD9720"
-    -- colors.yellow700 = "#FD9720"
-    -- colors.yellow900 = "#FD9720"
+    --   colors.yellow = "#FD9720"
+    --   colors.yellow300 = "#FD9720"
+    --   colors.yellow500 = "#FD9720"
+    --   colors.yellow700 = "#FD9720"
+    --   colors.yellow900 = "#FD9720"
     -- end,
     on_highlights = function(hl, c)
       hl.TelescopeNormal = {

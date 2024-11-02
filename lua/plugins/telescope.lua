@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.5",
+    tag = "0.1.8",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim", "nvim-tree/nvim-web-devicons" },
     config = function()
       require("telescope").setup({
@@ -28,7 +28,7 @@ return {
       require("telescope").setup({
         extensions = {
           file_browser = {
-            -- disables netrw and use telescope-file-browser in its place
+            grouped = true,
             initial_mode = "normal",
             hijack_netrw = true,
             layout_strategy = "flex",
@@ -57,7 +57,9 @@ return {
       -- you need to call load_extension, somewhere after setup function:
       require("telescope").load_extension("file_browser")
 
-      vim.keymap.set("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+      vim.keymap.set("n", "<space>e", function()
+        require("telescope").extensions.file_browser.file_browser()
+      end)
     end,
   },
 }
