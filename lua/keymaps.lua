@@ -8,10 +8,6 @@ vim.g.maplocalleader = "\\"
 local k = vim.keymap
 local opts = { noremap = true, silent = true }
 
--- Diagnostic
-k.set("n", "<C-e>", vim.diagnostic.goto_next, opts)
-k.set("n", "E", vim.diagnostic.goto_prev, opts)
-
 -- kill highlight when escape press
 k.set("n", "<Esc>", "<Esc>:noh<CR>", opts)
 

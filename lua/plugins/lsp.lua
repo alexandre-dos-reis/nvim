@@ -101,6 +101,9 @@ return {
         end, opts)
 
         set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+
+        set("n", "<C-e>", vim.diagnostic.goto_next, opts)
+        set("n", "E", vim.diagnostic.goto_prev, opts)
       end,
     })
   end,
