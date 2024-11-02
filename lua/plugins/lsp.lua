@@ -30,7 +30,6 @@ local LSPs = {
   gopls = {},
   rust_analyzer = {},
   nixd = {
-    -- nix
     cmd = { "nixd" },
     settings = {
       nixd = {
@@ -55,7 +54,6 @@ return {
   },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
-    -- TODO: For custom icon error see: https://github.com/LazyVim/LazyVim/issues/3309
     local lspconfig = require("lspconfig")
 
     -- Add cmp_nvim_lsp capabilities settings to lspconfig
