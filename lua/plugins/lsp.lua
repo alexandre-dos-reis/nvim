@@ -57,25 +57,50 @@ return {
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
     -- TODO: For custom icon error see: https://github.com/LazyVim/LazyVim/issues/3309
     local lspconfig = require("lspconfig")
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+    -- Add cmp_nvim_lsp capabilities settings to lspconfig
+    -- This should be executed before you configure any language server
+    local lspconfig_defaults = require("lspconfig").util.default_config
+    lspconfig_defaults.capabilities =
+      vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     for lsp_name, config in pairs(LSPs) do
-      config["capabilities"] = capabilities
       lspconfig[lsp_name].setup(config)
     end
 
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+    -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "●",
+          [vim.diagnostic.severity.WARN] = "●",
+          [vim.diagnostic.severity.HINT] = "●",
+          [vim.diagnostic.severity.INFO] = "●",
+        },
+      },
+    })
 
-    vim.keymap.set("n", "gd", function()
-      require("telescope.builtin").lsp_definitions({
-        jump_type = "tab",
-      })
-    end)
+    -- keymap on buffer attach
+    vim.api.nvim_create_autocmd("LspAttach", {
+      desc = "LSP actions",
+      callback = function(event)
+        local opts = { buffer = event.buf }
+        local set = vim.keymap.set
 
-    vim.keymap.set("n", "gr", function()
-      require("telescope.builtin").lsp_references()
-    end)
+        set("n", "K", vim.lsp.buf.hover, opts)
 
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+        set("n", "gd", function()
+          require("telescope.builtin").lsp_definitions({
+            jump_type = "tab",
+          })
+        end, opts)
+
+        set("n", "gr", function()
+          require("telescope.builtin").lsp_references()
+        end, opts)
+
+        set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+      end,
+    })
   end,
 }
