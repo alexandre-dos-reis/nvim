@@ -60,9 +60,7 @@ return {
       -- you need to call load_extension, somewhere after setup function:
       require("telescope").load_extension("file_browser")
 
-      vim.keymap.set("n", "<space>e", function()
-        require("telescope").extensions.file_browser.file_browser()
-      end)
+      vim.keymap.set("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
     end,
   },
 }
