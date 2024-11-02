@@ -29,6 +29,7 @@ local LSPs = {
   tailwindcss = {},
   gopls = {},
   rust_analyzer = {},
+  zls = {}, -- zig
   nixd = {
     cmd = { "nixd" },
     settings = {
@@ -63,6 +64,10 @@ return {
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     for lsp_name, config in pairs(LSPs) do
+      -- disable semantic tokens for now...
+      config["on_attach"] = function(client)
+        client.server_capabilities.semanticTokensProvider = nil
+      end
       lspconfig[lsp_name].setup(config)
     end
 
