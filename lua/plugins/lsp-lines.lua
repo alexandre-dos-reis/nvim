@@ -1,5 +1,5 @@
 return {
-  "Maan2003/lsp_lines.nvim",
+  "jmsegrev/lsp_lines.nvim",
   config = function()
     require("lsp_lines").setup()
     -- Remove default virtual lines.
