@@ -17,6 +17,7 @@ Apply git hooks with this command : `git config --local core.hooksPath .githooks
 - Set some toggle keymap:
   - between lsp lines and default diagnostic errors.
 - Tweek noice.nvim to had border to hover.
+- [Add which key](https://github.com/folke/which-key.nvim)
 
 ## Undercurl
 
