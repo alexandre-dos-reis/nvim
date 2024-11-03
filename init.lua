@@ -31,10 +31,10 @@ require("lazy").setup("plugins", {
   },
   -- This is needed to Treesitter parsers to work with nix...
   -- Need to check if there's a drop of performance.
-  performance = {
-    reset_packpath = false, -- reset the package path to improve startup time
-    rtp = {
-      reset = false, -- reset the runtime path to $VIMRUNTIME and your config directory
-    },
-  },
+  -- performance = {
+  --   reset_packpath = false, -- reset the package path to improve startup time
+  --   rtp = {
+  --     reset = false, -- reset the runtime path to $VIMRUNTIME and your config directory
+  --   },
+  -- },
 })
