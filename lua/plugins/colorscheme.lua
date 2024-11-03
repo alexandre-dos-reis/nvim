@@ -12,6 +12,7 @@ return {
     --   colors.yellow900 = "#FD9720"
     -- end,
     on_highlights = function(hl, c)
+      -- Telescope and browser extension
       hl.TelescopeNormal = {
         bg = c.bg_dark,
         fg = c.fg_dark,
@@ -38,6 +39,15 @@ return {
       hl.TelescopeResultsTitle = {
         bg = c.bg_dark,
         fg = c.bg_dark,
+      }
+      -- Lsp: hover and cmp
+      hl.NormalFloat = {
+        bg = c.bg_dark,
+        fg = c.fg_dark,
+      }
+      hl.FloatBorder = {
+        bg = c.bg_dark,
+        fg = c.fg_dark,
       }
     end,
   },

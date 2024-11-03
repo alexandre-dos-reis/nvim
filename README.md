@@ -14,6 +14,9 @@ Apply git hooks with this command : `git config --local core.hooksPath .githooks
 - Investigate :
   - [gopher.nvim](https://github.com/olexsmir/gopher.nvim)
   - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
+- Set some toggle keymap:
+  - between lsp lines and default diagnostic errors.
+- Tweek noice.nvim to had border to hover.
 
 ## Undercurl
 

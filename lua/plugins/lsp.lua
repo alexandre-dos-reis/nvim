@@ -63,8 +63,26 @@ return {
     lspconfig_defaults.capabilities =
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+    local border = {
+      { "╭", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╮", "FloatBorder" },
+      { "│", "FloatBorder" },
+      { "╯", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╰", "FloatBorder" },
+      { "│", "FloatBorder" },
+    }
+
+    local handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    }
+
     for lsp_name, config in pairs(LSPs) do
-      -- disable semantic tokens for now...
+      -- style for hover and signature help
+      config["handlers"] = handlers
+      -- disable semantic tokens for now as it is conflicting with the colorscheme
       config["on_attach"] = function(client)
         client.server_capabilities.semanticTokensProvider = nil
       end
