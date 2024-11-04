@@ -4,13 +4,14 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
-    -- on_colors = function(colors)
-    --   colors.yellow = "#FD9720"
-    --   colors.yellow300 = "#FD9720"
-    --   colors.yellow500 = "#FD9720"
-    --   colors.yellow700 = "#FD9720"
-    --   colors.yellow900 = "#FD9720"
-    -- end,
+    on_colors = function(c)
+      -- c.green100 = "#3c6700"
+      -- c.green300 = "#3e6700"
+      -- c.green500 = "#5c9802"
+      -- c.green700 = "#92fb00"
+      -- c.green900 = "#caffad"
+      -- c.green = c.green700
+    end,
     on_highlights = function(hl, c)
       -- Telescope and browser extension
       hl.TelescopeNormal = {
@@ -49,16 +50,24 @@ return {
         bg = c.bg_dark,
         fg = c.fg_dark,
       }
+      hl.WhichKeyBorder = {
+        bg = c.green700,
+        fg = c.green500,
+      }
+
+      -- Remove bg color for error, warn, info and hint !
+      for _, severity in ipairs({
+        "DiagnosticVirtualTextError",
+        "DiagnosticVirtualTextWarn",
+        "DiagnosticVirtualTextInfo",
+        "DiagnosticVirtualTextHint",
+      }) do
+        hl[severity] = nil
+      end
     end,
   },
   config = function(_, opts)
     require("solarized-osaka").setup(opts)
     vim.cmd.colorscheme("solarized-osaka")
-
-    -- Remove bg color for error, warn, info and hint !
-    vim.cmd([[highlight DiagnosticVirtualTextError guibg=NONE]])
-    vim.cmd([[highlight DiagnosticVirtualTextWarn guibg=NONE]])
-    vim.cmd([[highlight DiagnosticVirtualTextInfo guibg=NONE]])
-    vim.cmd([[highlight DiagnosticVirtualTextHint guibg=NONE]])
   end,
 }
