@@ -18,6 +18,7 @@ Apply git hooks with this command : `git config --local core.hooksPath .githooks
   - between lsp lines and default diagnostic errors.
 - Tweek noice.nvim to had border to hover.
 - [Add which key](https://github.com/folke/which-key.nvim)
+- [See example for implementing dap](https://www.youtube.com/watch?v=G7-qUMKSH_Y)
 
 ## Undercurl
 
