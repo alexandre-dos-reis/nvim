@@ -52,6 +52,7 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "jmsegrev/lsp_lines.nvim",
   },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
@@ -85,16 +86,31 @@ return {
       lspconfig[lsp_name].setup(config)
     end
 
+    local signs = {
+      [vim.diagnostic.severity.ERROR] = "●",
+      [vim.diagnostic.severity.WARN] = "●",
+      [vim.diagnostic.severity.HINT] = "●",
+      [vim.diagnostic.severity.INFO] = "●",
+    }
+
+    -- Use different layout for displaying diagnostic
+    require("lsp_lines").setup()
+
     -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
     vim.diagnostic.config({
+      -- virtual_text = {
+      --   prefix = function(diagnostic)
+      --     return signs[diagnostic.severity]
+      --   end,
+      -- },
+      virtual_text = false, -- We are using a lsp_lines
+      float = { border = "rounded" },
       signs = {
-        text = {
-          [vim.diagnostic.severity.ERROR] = "●",
-          [vim.diagnostic.severity.WARN] = "●",
-          [vim.diagnostic.severity.HINT] = "●",
-          [vim.diagnostic.severity.INFO] = "●",
-        },
+        text = signs,
       },
+
+      -- Remove default virtual lines.
+      vim.diagnostic.config({}),
     })
 
     -- keymap on buffer attach
