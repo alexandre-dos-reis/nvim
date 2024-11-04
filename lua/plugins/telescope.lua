@@ -35,10 +35,12 @@ return {
             initial_mode = "normal",
             hijack_netrw = true,
             layout_strategy = "flex",
+            no_ignore = true,
             mappings = {
               ["n"] = {
                 ["c"] = fb_actions.create,
                 ["h"] = fb_actions.goto_parent_dir,
+                ["i"] = fb_actions.toggle_hidden,
                 ["<C-u>"] = function(prompt_bufnr)
                   for _ = 1, 10 do
                     actions.move_selection_previous(prompt_bufnr)
@@ -60,7 +62,7 @@ return {
       -- you need to call load_extension, somewhere after setup function:
       require("telescope").load_extension("file_browser")
 
-      vim.keymap.set("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+      vim.keymap.set("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>")
     end,
   },
 }

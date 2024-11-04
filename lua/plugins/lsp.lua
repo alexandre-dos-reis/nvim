@@ -26,6 +26,7 @@ local LSPs = {
     },
   },
   ts_ls = {},
+  bashls = {},
   tailwindcss = {},
   gopls = {},
   rust_analyzer = {},
@@ -94,7 +95,7 @@ return {
     }
 
     -- Use different layout for displaying diagnostic
-    require("lsp_lines").setup()
+    -- require("lsp_lines").setup()
 
     -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
     vim.diagnostic.config({
@@ -103,7 +104,7 @@ return {
       --     return signs[diagnostic.severity]
       --   end,
       -- },
-      virtual_text = false, -- We are using a lsp_lines
+      -- virtual_text = true, -- We are using a lsp_lines
       float = { border = "rounded" },
       signs = {
         text = signs,
