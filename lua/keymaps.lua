@@ -5,11 +5,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-local set = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local set = function(mode, lhs, rhs, desc)
+  vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc or nil })
+end
 
 -- kill highlight when escape press
-set("n", "<Esc>", "<Esc>:noh<CR>", opts)
+set("n", "<Esc>", "<Esc>:noh<CR>")
 
 -- recenter screen on page up and down
 set("n", "<C-u>", "<C-u>zz")
@@ -23,16 +24,16 @@ set("n", "N", "Nzzzv")
 set("n", "x", '"_x')
 
 -- Increment and decrement
-set("n", "<leader>+", "<C-a>")
-set("n", "<leader>-", "<C-x>")
+set("n", "<leader>+", "<C-a>", "Increment number")
+set("n", "<leader>-", "<C-x>", "Decrement number")
 
 -- move selection in visual mode
-set("v", "J", ":m '>+1<CR>gv=gv", opts)
-set("v", "K", ":m '<-2<CR>gv=gv", opts)
+set("v", "J", ":m '>+1<CR>gv=gv")
+set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- move visual when indenting
-set("v", "<", "<gv", opts)
-set("v", ">", ">gv", opts)
+set("v", "<", "<gv")
+set("v", ">", ">gv")
 
 -- ep yank in the buffer on paste
 set("x", "<leader>p", '"_dP')
@@ -44,12 +45,12 @@ set("n", "<leader>tn", ":tabn<CR>")
 set("n", "<leader>tp", ":tabp<CR>")
 
 -- tmux-sessionizer
-set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Launch tmux-sessionizer")
 -- set("n", "<C-w>", "<cmd>silent !tmux neww tmux-windownizer<CR>")
 
--- quicist
+-- quicklist
 set("n", "<C-q>", "<cmd>cnext<CR>zz")
 set("n", "Q", "<cmd>cprev<CR>zz")
 
 -- https://www.reddit.com/r/neovim/comments/wi4uf3/how_do_i_insert_current_date_or_time/
-set("n", "<leader>ct", ":pu=strftime('%Y-%m-%d')<CR>", { desc = "Get today's data in yy-mm-dd format." })
+-- set("n", "<leader>ct", ":pu=strftime('%Y-%m-%d')<CR>", { desc = "Get today's data in yy-mm-dd format." })

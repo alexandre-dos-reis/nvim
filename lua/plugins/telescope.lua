@@ -11,9 +11,11 @@ return {
           },
         },
       })
+
       local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-      vim.keymap.set("n", "<leader>fs", builtin.live_grep, {})
+
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find file name" })
+      vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Fuzzy find string" })
 
       require("telescope").load_extension("ui-select")
     end,
@@ -62,7 +64,13 @@ return {
       -- you need to call load_extension, somewhere after setup function:
       require("telescope").load_extension("file_browser")
 
-      vim.keymap.set("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>")
+      vim.keymap.set("n", "<space>e", function()
+        require("telescope").extensions.file_browser.file_browser({
+          path = "%:p:h",
+          select_buffer = true,
+          hidden = true,
+        })
+      end, { desc = "Open file browser" })
     end,
   },
 }

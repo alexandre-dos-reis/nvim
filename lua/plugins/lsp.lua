@@ -122,25 +122,26 @@ return {
       desc = "LSP actions",
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(event)
-        local opts = { buffer = event.buf }
-        local set = vim.keymap.set
+        local set = function(lhs, rhs, desc)
+          vim.keymap.set("n", lhs, rhs, { buffer = event.buf, desc = desc or nil })
+        end
 
-        set("n", "K", vim.lsp.buf.hover, opts)
+        set("K", vim.lsp.buf.hover, "LSP Hover definition")
 
-        set("n", "gd", function()
+        set("gd", function()
           require("telescope.builtin").lsp_definitions({
             jump_type = "tab",
           })
-        end, opts)
+        end, "LSP [g]o to [d]efinitions")
 
-        set("n", "gr", function()
+        set("gr", function()
           require("telescope.builtin").lsp_references()
-        end, opts)
+        end, "LSP [g]o to [r]eferences")
 
-        set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        set("<leader>ca", vim.lsp.buf.code_action, "Show [c]ode [a]ctions")
 
-        set("n", "<C-e>", vim.diagnostic.goto_next, opts)
-        set("n", "E", vim.diagnostic.goto_prev, opts)
+        set("<C-e>", vim.diagnostic.goto_next, "Go to next diagnostic")
+        set("E", vim.diagnostic.goto_prev, "Go to previous diagnostic")
       end,
     })
   end,

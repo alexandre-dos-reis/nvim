@@ -1,43 +1,58 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  opts = {
-    ensure_installed = {
-      "html",
-      "lua",
-      "tsx",
-      "typescript",
-      "javascript",
-      "go",
-      "astro",
-      "cmake",
-      "css",
-      "scss",
-      "fish",
-      "gitignore",
-      "markdown",
-      "markdown_inline",
-      "graphql",
-      "http",
-      "php",
-      "rust",
-      "sql",
-      "nix",
-      "just",
-      "terraform",
-      "zig",
-    },
-    highlight = {
-      enable = true,
-    },
+  {
+    "windwp/nvim-ts-autotag",
+    events = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("nvim-ts-autotag").setup({
+        opts = {
+          enable_close = true, -- Auto close tags
+          enable_rename = true, -- Auto rename pairs of tags
+          enable_close_on_slash = false, -- Auto close on trailing </
+        },
+      })
+    end,
   },
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
-
-    -- Mdx
-    vim.filetype.add({
-      extension = {
-        mdx = "mdx",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "html",
+        "lua",
+        "tsx",
+        "typescript",
+        "javascript",
+        "go",
+        "astro",
+        "cmake",
+        "css",
+        "scss",
+        "fish",
+        "gitignore",
+        "markdown",
+        "markdown_inline",
+        "graphql",
+        "http",
+        "php",
+        "rust",
+        "sql",
+        "nix",
+        "just",
+        "terraform",
+        "zig",
       },
-    })
-  end,
+      highlight = {
+        enable = true,
+      },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+
+      -- Mdx
+      vim.filetype.add({
+        extension = {
+          mdx = "mdx",
+        },
+      })
+    end,
+  },
 }

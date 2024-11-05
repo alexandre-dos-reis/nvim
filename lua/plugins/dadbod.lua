@@ -20,6 +20,7 @@ return {
     {
       "<leader>db",
       "<cmd>tabnew<cr><bar><bar><cmd>DBUI<cr>",
+      desc = "Launch dadbod ui",
     },
   },
 }

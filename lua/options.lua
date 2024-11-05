@@ -41,7 +41,6 @@ o.splitbelow = true
 o.conceallevel = 1
 
 -- Globals
-
 vim.g.have_nerd_font = true
 
 -- Custom commands
