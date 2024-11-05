@@ -29,6 +29,7 @@ return {
           "gofumpt",
           "golines",
         },
+        sh = { "beautysh" },
         rust = { "rustfmt" },
       },
       default_format_opts = {
