@@ -9,11 +9,14 @@ return {
     local theme = require("solarized-osaka.colors").setup()
 
     local topbarBg = theme.base02
-    local unselectedBg = "#002933" -- Very close to base03
+    local unselectedBg = theme.base03
     local unselectedFg = theme.base01
     local warningFg = theme.yellow
     local errorFg = theme.red
     local hintFg = theme.blue
+
+    -- This is coming from  https://github.com/alexandre-dos-reis/nix/blob/master/users.nix#L9
+    local terminalBg = "#072329"
 
     -- https://github.com/akinsho/bufferline.nvim/blob/main/lua/bufferline/config.lua#L274
     return {
@@ -42,6 +45,7 @@ return {
         },
         separator_selected = {
           fg = topbarBg,
+          bg = terminalBg,
         },
         separator_visible = {
           fg = topbarBg,
@@ -51,8 +55,15 @@ return {
           fg = topbarBg,
           bg = unselectedBg,
         },
+        tab = {
+          bg = terminalBg,
+        },
         tab_selected = {
           bold = true,
+          bg = terminalBg,
+        },
+        buffer_selected = {
+          bg = terminalBg,
         },
         tab_separator = {
           fg = topbarBg,
@@ -60,6 +71,7 @@ return {
         },
         tab_separator_selected = {
           fg = topbarBg,
+          bg = terminalBg,
         },
         offset_separator = {
           bg = topbarBg,
@@ -78,6 +90,7 @@ return {
         },
         warning_selected = {
           fg = warningFg,
+          bg = terminalBg,
         },
         hint = {
           fg = hintFg,
@@ -91,6 +104,13 @@ return {
         },
         error_selected = {
           fg = errorFg,
+          bg = terminalBg,
+        },
+        diagnostic_selected = {
+          bg = terminalBg,
+        },
+        modified_selected = {
+          bg = terminalBg,
         },
       },
     }
