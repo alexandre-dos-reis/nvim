@@ -25,7 +25,8 @@ local LSPs = {
       },
     },
   },
-  ts_ls = {},
+  -- ts_ls = {},
+  vtsls = {},
   bashls = {},
   tailwindcss = {},
   gopls = {},
@@ -54,10 +55,12 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "jmsegrev/lsp_lines.nvim",
+    "yioneko/nvim-vtsls",
   },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
     local lspconfig = require("lspconfig")
+    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
     -- Add cmp_nvim_lsp capabilities settings to lspconfig
     -- This should be executed before you configure any language server

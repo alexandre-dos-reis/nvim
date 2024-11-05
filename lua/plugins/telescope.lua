@@ -40,7 +40,7 @@ return {
               ["n"] = {
                 ["c"] = fb_actions.create,
                 ["h"] = fb_actions.goto_parent_dir,
-                ["i"] = fb_actions.toggle_hidden,
+                ["o"] = fb_actions.toggle_hidden,
                 ["<C-u>"] = function(prompt_bufnr)
                   for _ = 1, 10 do
                     actions.move_selection_previous(prompt_bufnr)
