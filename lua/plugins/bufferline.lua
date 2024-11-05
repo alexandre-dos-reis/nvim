@@ -8,15 +8,13 @@ return {
   opts = function()
     local theme = require("solarized-osaka.colors").setup()
 
+    local terminalBg = vim.env.TERMINAL_BG
     local topbarBg = theme.base02
     local unselectedBg = theme.base03
     local unselectedFg = theme.base01
     local warningFg = theme.yellow
     local errorFg = theme.red
     local hintFg = theme.blue
-
-    -- This is coming from  https://github.com/alexandre-dos-reis/nix/blob/master/users.nix#L9
-    local terminalBg = "#072329"
 
     -- https://github.com/akinsho/bufferline.nvim/blob/main/lua/bufferline/config.lua#L274
     return {

@@ -30,7 +30,7 @@ require("lazy").setup("plugins", {
     notify = false,
   },
   -- This is needed to Treesitter parsers to work with nix...
-  -- Need to check if there's a drop of performance.
+  -- But this is hurting performance on large codebase
   -- performance = {
   --   reset_packpath = false, -- reset the package path to improve startup time
   --   rtp = {
