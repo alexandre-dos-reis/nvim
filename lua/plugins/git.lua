@@ -24,8 +24,8 @@ return {
         end
 
         -- Navigation
-        map("n", "<leader>gn", gs.next_hunk, "Next git hunk")
-        map("n", "<leader>gp", gs.prev_hunk, "Prev git hunk")
+        map("n", "<leader>gj", gs.next_hunk, "Next git hunk")
+        map("n", "<leader>gk", gs.prev_hunk, "Prev git hunk")
 
         -- TODO: Inspect...
 
