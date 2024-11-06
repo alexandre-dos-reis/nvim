@@ -8,8 +8,11 @@ return {
   opts = function()
     local theme = require("solarized-osaka.colors").setup()
 
+    local selectedFg = theme.base0
     local terminalBg = vim.env.TERMINAL_BG
+
     local topbarBg = theme.base02
+
     local unselectedBg = theme.base03
     local unselectedFg = theme.base01
     local warningFg = theme.yellow
@@ -57,10 +60,17 @@ return {
           bg = terminalBg,
         },
         tab_selected = {
-          bold = true,
+          -- bold = true,
           bg = terminalBg,
         },
         buffer_selected = {
+          fg = selectedFg,
+          bg = terminalBg,
+        },
+        duplicate_selected = {
+          italic = true,
+          bold = true,
+          fg = selectedFg,
           bg = terminalBg,
         },
         tab_separator = {
@@ -84,7 +94,7 @@ return {
           fg = warningFg,
           bg = unselectedBg,
           italic = true,
-          bold = true,
+          -- bold = true,
         },
         warning_selected = {
           fg = warningFg,
@@ -98,7 +108,7 @@ return {
           fg = errorFg,
           bg = unselectedBg,
           italic = true,
-          bold = true,
+          -- bold = true,
         },
         error_selected = {
           fg = errorFg,
