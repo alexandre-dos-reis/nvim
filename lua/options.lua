@@ -34,6 +34,7 @@ o.wrap = false -- No Wrap lines
 -- o.backspace = { "start", "eol", "indent" }
 o.swapfile = false
 o.foldenable = false
+o.undofile = true -- Persist undo after closing nvim
 
 -- split windows
 o.splitright = true
