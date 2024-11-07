@@ -1,6 +1,7 @@
 return {
   "akinsho/bufferline.nvim",
-  event = { "BufReadPre" },
+  lazy = false,
+  priority = 1000,
   keys = {
     { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
     { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
