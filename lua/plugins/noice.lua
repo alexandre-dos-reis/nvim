@@ -19,7 +19,7 @@ return {
       },
     },
     presets = {
-      -- lsp_doc_border = true,
+      lsp_doc_border = false,
       bottom_search = false,
       inc_rename = true,
     },

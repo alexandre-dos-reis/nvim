@@ -105,6 +105,9 @@ return {
           fg = hintFg,
           bg = unselectedBg,
         },
+        hint_selected = {
+          bg = terminalBg,
+        },
         error = {
           fg = errorFg,
           bg = unselectedBg,
