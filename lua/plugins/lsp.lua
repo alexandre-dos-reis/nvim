@@ -68,21 +68,7 @@ return {
     lspconfig_defaults.capabilities =
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-    -- Override default style for lsp hover and signature
-    local styleOpts = {
-      border = "rounded",
-      silent = true, -- Disable `No information available` notification
-    }
-
-    -- See this issue for empty docs around hover defs: https://github.com/neovim/neovim/issues/25718
-    local handlers = {
-      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, styleOpts),
-      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, styleOpts),
-    }
-
     for lsp_name, config in pairs(LSPs) do
-      -- style for hover and signature help
-      config["handlers"] = handlers
       -- disable semantic tokens for now as it is conflicting with the colorscheme
       config["on_attach"] = function(client)
         client.server_capabilities.semanticTokensProvider = nil
@@ -112,9 +98,6 @@ return {
       signs = {
         text = signs,
       },
-
-      -- Remove default virtual lines.
-      vim.diagnostic.config({}),
     })
 
     -- keymap on buffer attach
@@ -126,7 +109,9 @@ return {
           vim.keymap.set("n", lhs, rhs, { buffer = event.buf, desc = desc or nil })
         end
 
-        set("K", vim.lsp.buf.hover, "LSP Hover definition")
+        set("K", function()
+          vim.lsp.buf.hover({ border = "rounded", silent = true })
+        end, "LSP Hover definition")
 
         set("gd", function()
           require("telescope.builtin").lsp_definitions({
@@ -140,8 +125,12 @@ return {
 
         set("<leader>ca", vim.lsp.buf.code_action, "Show [c]ode [a]ctions")
 
-        set("<C-e>", vim.diagnostic.goto_next, "Go to next diagnostic")
-        set("E", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+        set("<C-e>", function()
+          vim.diagnostic.jump({ count = 1, float = true })
+        end, "Go to next diagnostic")
+        set("E", function()
+          vim.diagnostic.jump({ count = -1, float = true })
+        end, "Go to previous diagnostic")
       end,
     })
   end,
