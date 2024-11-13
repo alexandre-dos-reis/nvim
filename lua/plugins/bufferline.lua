@@ -108,14 +108,26 @@ return {
         hint_selected = {
           bg = terminalBg,
         },
+        hint_diagnostic_selected = {
+          bg = terminalBg,
+        },
+        info_selected = {
+          bg = terminalBg,
+        },
         error = {
           fg = errorFg,
           bg = unselectedBg,
           italic = true,
           -- bold = true,
         },
+        warning_diagnostic_selected = {
+          bg = terminalBg,
+        },
         error_selected = {
           fg = errorFg,
+          bg = terminalBg,
+        },
+        error_diagnostic_selected = {
           bg = terminalBg,
         },
         diagnostic_selected = {

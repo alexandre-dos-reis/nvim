@@ -25,13 +25,15 @@ local LSPs = {
       },
     },
   },
-  -- ts_ls = {},
-  vtsls = {},
+  vtsls = {}, -- or ts_ls
   bashls = {},
   tailwindcss = {},
   gopls = {},
+  omnisharp = {}, -- or csharp_ls = {},
+  cmd = { "OmniSharp" },
   rust_analyzer = {},
   zls = {}, -- zig
+  terraform_lsp = {},
   nixd = {
     cmd = { "nixd" },
     settings = {
