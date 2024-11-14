@@ -1,63 +1,87 @@
-local LSPs = {
-  lua_ls = {
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using
-          -- (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = {
-            "vim",
-            "require",
+local getLSPs = function()
+  return {
+    lua_ls = {
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = "LuaJIT",
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {
+              "vim",
+              "require",
+            },
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
           },
         },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
+      },
+    },
+    vtsls = {}, -- or ts_ls
+    jsonls = {
+      settings = {
+        json = {
+          -- provide schemas for all king of json files
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
         },
       },
     },
-  },
-  vtsls = {}, -- or ts_ls
-  jsonls = {},
-  bashls = {},
-  tailwindcss = {},
-  gopls = {},
-  omnisharp = { -- or csharp_ls = {},
-    cmd = { "OmniSharp" },
-  },
-  postgres_lsp = {},
-  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#graphql
-  -- graphql = {
-  --   filetypes = { "graphql", "gql", "javascript", "typescript", "typescriptreact", "javascriptreact" },
-  -- },
-  rust_analyzer = {},
-  zls = {}, -- zig
-  terraform_lsp = {},
-  nixd = {
-    cmd = { "nixd" },
-    settings = {
-      nixd = {
-        nixpkgs = {
-          expr = "import <nixpkgs> { }",
-        },
-        formatting = {
-          command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
-        },
-        home_manager = {
-          expr = '(builtins.getFlake "/home/alexandre/dev/nix-conf").homeConfigurations."lyc@adrastea".options',
+    yamlls = {
+      settings = {
+        yaml = {
+          schemaStore = {
+            -- You must disable built-in schemaStore support if you want to use
+            -- this plugin and its advanced options like `ignore`.
+            enable = false,
+            -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+            url = "",
+          },
+          schemas = require("schemastore").yaml.schemas(),
         },
       },
     },
-  },
-}
+    bashls = {},
+    tailwindcss = {},
+    gopls = {},
+    omnisharp = { -- or csharp_ls = {},
+      cmd = { "OmniSharp" },
+    },
+    postgres_lsp = {},
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#graphql
+    -- graphql = {
+    --   filetypes = { "graphql", "gql", "javascript", "typescript", "typescriptreact", "javascriptreact" },
+    -- },
+    rust_analyzer = {},
+    zls = {}, -- zig
+    terraform_lsp = {},
+    nixd = {
+      cmd = { "nixd" },
+      settings = {
+        nixd = {
+          nixpkgs = {
+            expr = "import <nixpkgs> { }",
+          },
+          formatting = {
+            command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
+          },
+          home_manager = {
+            expr = '(builtins.getFlake "/home/alexandre/dev/nix-conf").homeConfigurations."lyc@adrastea".options',
+          },
+        },
+      },
+    },
+  }
+end
 
 return {
   "neovim/nvim-lspconfig",
@@ -65,6 +89,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "jmsegrev/lsp_lines.nvim",
     "yioneko/nvim-vtsls",
+    "b0o/schemastore.nvim",
   },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
@@ -77,7 +102,7 @@ return {
     lspconfig_defaults.capabilities =
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-    for lsp_name, config in pairs(LSPs) do
+    for lsp_name, config in pairs(getLSPs()) do
       -- disable semantic tokens for now as it is conflicting with the colorscheme
       config["on_attach"] = function(client)
         client.server_capabilities.semanticTokensProvider = nil
