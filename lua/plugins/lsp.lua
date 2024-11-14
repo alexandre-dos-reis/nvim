@@ -58,9 +58,9 @@ local getLSPs = function()
     },
     postgres_lsp = {},
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#graphql
-    -- graphql = {
-    --   filetypes = { "graphql", "gql", "javascript", "typescript", "typescriptreact", "javascriptreact" },
-    -- },
+    graphql = {
+      filetypes = { "graphql", "gql" },
+    },
     rust_analyzer = {},
     zls = {}, -- zig
     terraform_lsp = {},
