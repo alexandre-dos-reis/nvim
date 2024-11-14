@@ -26,11 +26,18 @@ local LSPs = {
     },
   },
   vtsls = {}, -- or ts_ls
+  jsonls = {},
   bashls = {},
   tailwindcss = {},
   gopls = {},
-  omnisharp = {}, -- or csharp_ls = {},
-  cmd = { "OmniSharp" },
+  omnisharp = { -- or csharp_ls = {},
+    cmd = { "OmniSharp" },
+  },
+  postgres_lsp = {},
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#graphql
+  -- graphql = {
+  --   filetypes = { "graphql", "gql", "javascript", "typescript", "typescriptreact", "javascriptreact" },
+  -- },
   rust_analyzer = {},
   zls = {}, -- zig
   terraform_lsp = {},
