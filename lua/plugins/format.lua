@@ -31,6 +31,7 @@ return {
         },
         sh = { "beautysh" },
         rust = { "rustfmt" },
+        sql = { "pg_format" },
       },
       default_format_opts = {
         lsp_format = "fallback",
