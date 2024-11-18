@@ -1,4 +1,4 @@
-local getLSPs = function()
+local getLspConfig = function()
   return {
     lua_ls = {
       settings = {
@@ -102,7 +102,7 @@ return {
     lspconfig_defaults.capabilities =
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-    for lsp_name, config in pairs(getLSPs()) do
+    for lsp_name, config in pairs(getLspConfig()) do
       -- disable semantic tokens for now as it is conflicting with the colorscheme
       config["on_attach"] = function(client)
         client.server_capabilities.semanticTokensProvider = nil

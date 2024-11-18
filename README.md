@@ -19,6 +19,7 @@ Apply git hooks with this command : `git config --local core.hooksPath .githooks
 - Tweek noice.nvim to had border to hover.
 - [Add which key](https://github.com/folke/which-key.nvim)
 - [See example for implementing dap](https://www.youtube.com/watch?v=G7-qUMKSH_Y)
+- [Implement test](https://www.youtube.com/watch?v=G7-qUMKSH_Y)
 
 ## Undercurl
 
