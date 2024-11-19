@@ -33,7 +33,7 @@ return {
           }),
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-d"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
           ["<C-u>"] = cmp.mapping.scroll_docs(4),
           ["<C-i>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
