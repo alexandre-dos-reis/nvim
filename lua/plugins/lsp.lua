@@ -26,7 +26,11 @@ local getLspConfig = function()
         },
       },
     },
-    vtsls = {}, -- or ts_ls
+    vtsls = {
+      on_attach = function(client, bufnr)
+        require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+      end,
+    }, -- or ts_ls
     jsonls = {
       settings = {
         json = {
@@ -53,8 +57,20 @@ local getLspConfig = function()
     bashls = {},
     tailwindcss = {},
     gopls = {},
-    omnisharp = { -- or csharp_ls = {},
+    omnisharp = {
       cmd = { "OmniSharp" },
+      enable_roslyn_analyzers = true,
+      organize_imports_on_format = true,
+      enable_import_completion = true,
+      handlers = {
+        ["textDocument/definition"] = require("omnisharp_extended").definition_handler,
+        ["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
+        ["textDocument/references"] = require("omnisharp_extended").references_handler,
+        ["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
+      },
+      root_dir = function()
+        return vim.loop.cwd() -- current working directory
+      end,
     },
     postgres_lsp = {},
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#graphql
@@ -90,6 +106,8 @@ return {
     "jmsegrev/lsp_lines.nvim",
     "yioneko/nvim-vtsls",
     "b0o/schemastore.nvim",
+    "artemave/workspace-diagnostics.nvim",
+    { "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
   },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
@@ -103,8 +121,14 @@ return {
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     for lsp_name, config in pairs(getLspConfig()) do
-      -- disable semantic tokens for now as it is conflicting with the colorscheme
-      config["on_attach"] = function(client)
+      -- retrive any on_attach function previously defined
+      local lsp_on_attach_config = config["on_attach"]
+
+      config["on_attach"] = function(client, bufnr)
+        if lsp_on_attach_config ~= nil then
+          lsp_on_attach_config(client, bufnr)
+        end
+        -- disable semantic tokens for now as it is conflicting with the colorscheme
         client.server_capabilities.semanticTokensProvider = nil
       end
       lspconfig[lsp_name].setup(config)
