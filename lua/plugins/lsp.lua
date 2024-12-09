@@ -1,31 +1,6 @@
 local getLspConfig = function()
   return {
-    lua_ls = {
-      settings = {
-        Lua = {
-          runtime = {
-            -- Tell the language server which version of Lua you're using
-            -- (most likely LuaJIT in the case of Neovim)
-            version = "LuaJIT",
-          },
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {
-              "vim",
-              "require",
-            },
-          },
-          workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
-          },
-          -- Do not send telemetry data containing a randomized but unique identifier
-          telemetry = {
-            enable = false,
-          },
-        },
-      },
-    },
+    lua_ls = {},
     vtsls = {
       on_attach = function(client, bufnr)
         require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
@@ -108,6 +83,17 @@ return {
     "b0o/schemastore.nvim",
     "artemave/workspace-diagnostics.nvim",
     { "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
   },
   config = function()
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
@@ -146,12 +132,6 @@ return {
 
     -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
     vim.diagnostic.config({
-      -- virtual_text = {
-      --   prefix = function(diagnostic)
-      --     return signs[diagnostic.severity]
-      --   end,
-      -- },
-      -- virtual_text = true, -- We are using a lsp_lines
       float = { border = "rounded" },
       signs = {
         text = signs,
@@ -170,6 +150,10 @@ return {
         set("K", function()
           vim.lsp.buf.hover({ border = "rounded", silent = true })
         end, "LSP Hover definition")
+
+        set("<leader>rn", function()
+          vim.lsp.buf.rename()
+        end, "LSP rename")
 
         set("gd", function()
           require("telescope.builtin").lsp_definitions({
