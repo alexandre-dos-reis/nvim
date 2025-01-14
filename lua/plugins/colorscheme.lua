@@ -4,14 +4,14 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
-    on_colors = function(c)
-      -- c.green100 = "#3c6700"
-      -- c.green300 = "#3e6700"
-      -- c.green500 = "#5c9802"
-      -- c.green700 = "#92fb00"
-      -- c.green900 = "#caffad"
-      -- c.green = c.green700
-    end,
+    -- on_colors = function(c)
+    -- c.green100 = "#3c6700"
+    -- c.green300 = "#3e6700"
+    -- c.green500 = "#5c9802"
+    -- c.green700 = "#92fb00"
+    -- c.green900 = "#caffad"
+    -- c.green = c.green700
+    -- end,
     on_highlights = function(hl, c)
       -- Telescope and browser extension
       hl.TelescopeNormal = {
@@ -64,6 +64,17 @@ return {
       }) do
         hl[severity] = nil
       end
+
+      vim.opt.cursorline = true
+      -- Cursor line
+      hl.CursorLine = {
+        bg = c.base03,
+      }
+      -- Cursor line number
+      hl.CursorLineNr = {
+        fg = c.base1,
+        bold = true,
+      }
     end,
   },
   config = function(_, opts)

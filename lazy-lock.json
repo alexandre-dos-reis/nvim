@@ -30,7 +30,7 @@
   "rainbow_csv.nvim": { "branch": "main", "commit": "7f3fddfe813641035fac2cdf94c2ff69bb0bf0b9" },
   "schemastore.nvim": { "branch": "main", "commit": "e43f3e47991bc9f6cbc1d8b4d0f6a0d8d6c29284" },
   "snacks.nvim": { "branch": "main", "commit": "98df370703b3c47a297988f3e55ce99628639590" },
-  "solarized-osaka.nvim": { "branch": "main", "commit": "2fa6c3091c2765f1e0e6409a85b1356fb901e58d" },
+  "solarized-osaka.nvim": { "branch": "main", "commit": "2663501654f8e4aa218db9cad15387b881360fe3" },
   "tailwind-tools": { "branch": "master", "commit": "3703e162d819a04b128902c508276553dae0dfb8" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "626998e5c1b71c130d8bc6cf7abb6709b98287bb" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
