@@ -17,6 +17,7 @@ local getLspConfig = function()
         },
       },
     },
+    phpactor = {},
     yamlls = {
       settings = {
         yaml = {
