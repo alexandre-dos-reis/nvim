@@ -1,10 +1,12 @@
 local getLspConfig = function()
   return {
+    nushell = {},
     lua_ls = {},
+    -- ts_ls = {},
     vtsls = {
-      on_attach = function(client, bufnr)
-        require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
-      end,
+      -- on_attach = function(client, bufnr)
+      --   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+      -- end,
     }, -- or ts_ls
     jsonls = {
       settings = {

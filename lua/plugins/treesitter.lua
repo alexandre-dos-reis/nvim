@@ -38,6 +38,7 @@ return {
         "nix",
         "just",
         "terraform",
+        "nu",
         "zig",
       },
       highlight = {
