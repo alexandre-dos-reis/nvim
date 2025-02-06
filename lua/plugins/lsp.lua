@@ -35,6 +35,7 @@ local getLspConfig = function()
     bashls = {},
     tailwindcss = {},
     gopls = {},
+    templ = {},
     omnisharp = {
       cmd = { "OmniSharp" },
       enable_roslyn_analyzers = true,

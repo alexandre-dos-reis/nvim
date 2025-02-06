@@ -22,6 +22,7 @@ return {
         "typescript",
         "javascript",
         "go",
+        "templ",
         "astro",
         "cmake",
         "css",
