@@ -49,8 +49,19 @@ set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Launch tmux-se
 -- set("n", "<C-w>", "<cmd>silent !tmux neww tmux-windownizer<CR>")
 
 -- quicklist
-set("n", "<C-q>", "<cmd>cnext<CR>zz")
-set("n", "Q", "<cmd>cprev<CR>zz")
+set("n", "<C-n>", function()
+  local success = pcall(vim.cmd, "cnext")
+  if not success then
+    vim.cmd("cfirst")
+  end
+end, "Navigate to the next quickfix item")
+
+set("n", "<C-p>", function()
+  local success = pcall(vim.cmd, "cprev")
+  if not success then
+    vim.cmd("clast")
+  end
+end, "Navigate to the previous quickfix item")
 
 -- https://www.reddit.com/r/neovim/comments/wi4uf3/how_do_i_insert_current_date_or_time/
 -- set("n", "<leader>ct", ":pu=strftime('%Y-%m-%d')<CR>", { desc = "Get today's data in yy-mm-dd format." })
