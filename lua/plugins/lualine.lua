@@ -12,7 +12,7 @@ return {
           normal = {
             a = { fg = colors.base03, bg = colors.blue, gui = "bold" },
             b = { fg = colors.base03, bg = colors.base1 },
-            c = { fg = colors.base1, bg = colors.base02 },
+            c = { fg = colors.base00, bg = vim.env.TERMINAL_BG },
           },
           insert = { a = { fg = colors.base03, bg = colors.warning, gui = "bold" } },
           visual = { a = { fg = colors.base03, bg = colors.magenta, gui = "bold" } },

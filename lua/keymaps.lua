@@ -9,6 +9,10 @@ local set = function(mode, lhs, rhs, desc)
   vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc or nil })
 end
 
+-- Paste the clipboard content in Insert mode
+-- TODO: make this available in telescope
+set("i", "<C-v>", "<C-R>+")
+
 -- kill highlight when escape press
 set("n", "<Esc>", "<Esc>:noh<CR>")
 
