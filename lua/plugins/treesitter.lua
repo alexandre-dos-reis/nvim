@@ -41,6 +41,7 @@ return {
         "terraform",
         "nu",
         "zig",
+        "cue",
       },
       highlight = {
         enable = true,

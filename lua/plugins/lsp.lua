@@ -69,8 +69,10 @@ local getLspConfig = function()
           formatting = {
             command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
           },
-          home_manager = {
-            expr = '(builtins.getFlake "/home/alexandre/dev/nix-conf").homeConfigurations."lyc@adrastea".options',
+          options = {
+            home_manager = {
+              expr = '(builtins.getFlake "/home/alex/dev/nix-config/").homeConfigurations."alex@finishers".options',
+            },
           },
         },
       },

@@ -10,8 +10,8 @@ return {
         globalstatus = true,
         theme = {
           normal = {
-            a = { fg = colors.base03, bg = colors.blue, gui = "bold" },
-            b = { fg = colors.base03, bg = colors.base1 },
+            a = { fg = colors.base1, bg = colors.base02, gui = "bold" },
+            b = { fg = colors.base1, bg = colors.base03 },
             c = { fg = colors.base00, bg = vim.env.TERMINAL_BG },
           },
           insert = { a = { fg = colors.base03, bg = colors.warning, gui = "bold" } },
