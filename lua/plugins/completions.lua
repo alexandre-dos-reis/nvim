@@ -35,7 +35,8 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-d>"] = cmp.mapping.scroll_docs(-4),
           ["<C-u>"] = cmp.mapping.scroll_docs(4),
-          ["<C-i>"] = cmp.mapping.complete(),
+          -- Internally <Tab> is mapped to <C-i>, so settings <Tab> sets <C-i> also.
+          ["<Tab>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -48,6 +49,7 @@ return {
           { name = "luasnip" },
           { name = "path" },
           { name = "vim-dadbod-completion" },
+          { name = "buffer" },
         }, {
           { name = "buffer" },
         }),

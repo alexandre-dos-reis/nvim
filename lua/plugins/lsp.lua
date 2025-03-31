@@ -141,6 +141,7 @@ return {
 
     -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
     vim.diagnostic.config({
+      virtual_lines = true,
       float = { border = "rounded" },
       signs = {
         text = signs,
