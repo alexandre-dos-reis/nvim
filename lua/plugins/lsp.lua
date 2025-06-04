@@ -8,6 +8,7 @@ local getLspConfig = function()
       --   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
       -- end,
     }, -- or ts_ls
+    astro = {},
     jsonls = {
       settings = {
         json = {
@@ -58,7 +59,7 @@ local getLspConfig = function()
     },
     rust_analyzer = {},
     zls = {}, -- zig
-    terraform_lsp = {},
+    terraformls = {},
     nixd = {
       cmd = { "nixd" },
       settings = {
@@ -141,7 +142,7 @@ return {
 
     -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
     vim.diagnostic.config({
-      virtual_lines = true,
+      virtual_lines = false,
       float = { border = "rounded" },
       signs = {
         text = signs,

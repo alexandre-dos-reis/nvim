@@ -32,6 +32,7 @@ return {
         sh = { "beautysh" },
         rust = { "rustfmt" },
         sql = { "pg_format" },
+        terraform = { "terraform_fmt" },
       },
       default_format_opts = {
         lsp_format = "fallback",
