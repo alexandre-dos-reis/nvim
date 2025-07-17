@@ -1,6 +1,6 @@
 # Nvim Config
 
-- version: NVIM v0.12.0-nightly+0ab0cdb
+- version: NVIM v0.12.0-nightly+fcec161
 
 ## Installation
 
