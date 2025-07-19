@@ -115,8 +115,8 @@ return {
         if lsp_on_attach_config ~= nil then
           lsp_on_attach_config(client, bufnr)
         end
-        -- disable semantic tokens for now as it is conflicting with the colorscheme
-        client.server_capabilities.semanticTokensProvider = nil
+        -- -- disable semantic tokens for now as it is conflicting with the colorscheme
+        -- client.server_capabilities.semanticTokensProvider = nil
       end
       lspconfig[lsp_name].setup(config)
     end
