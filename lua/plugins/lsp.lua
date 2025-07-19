@@ -85,7 +85,6 @@ end
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
     "jmsegrev/lsp_lines.nvim",
     "yioneko/nvim-vtsls",
     "b0o/schemastore.nvim",
@@ -107,12 +106,6 @@ return {
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
     local lspconfig = require("lspconfig")
     require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-
-    -- Add cmp_nvim_lsp capabilities settings to lspconfig
-    -- This should be executed before you configure any language server
-    local lspconfig_defaults = lspconfig.util.default_config
-    lspconfig_defaults.capabilities =
-      vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     for lsp_name, config in pairs(getLspConfig()) do
       -- retrive any on_attach function previously defined
