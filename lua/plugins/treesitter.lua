@@ -42,6 +42,7 @@ return {
         "nu",
         "zig",
         "cue",
+        "c_sharp",
       },
       highlight = {
         enable = true,

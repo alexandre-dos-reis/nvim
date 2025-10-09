@@ -1,16 +1,16 @@
 return {
   {
-    "dinhhuy258/git.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("git").setup({
-        blame = "<Leader>gb",
-        browse = "<Leader>go",
-        open_pull_request = "<Leader>gp",
-        diff = nil,
-        diff_close = nil,
-      })
-    end,
+    "tpope/vim-fugitive",
+    dependencies = { "tpope/vim-rhubarb" },
+    keys = {
+      { "<leader>go", "<Cmd>GBrowse<CR>", mode = { "n" }, desc = "Open current remote file on browser" },
+      {
+        "<leader>go",
+        ":'<,'>GBrowse<CR>",
+        mode = { "v" },
+        desc = "Open current remote file on browser with current line selected",
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",

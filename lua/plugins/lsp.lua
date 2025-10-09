@@ -37,25 +37,27 @@ local getLspConfig = function()
     tailwindcss = {},
     gopls = {},
     templ = {},
-    omnisharp = {
-      cmd = { "OmniSharp" },
-      enable_roslyn_analyzers = true,
-      organize_imports_on_format = true,
-      enable_import_completion = true,
-      handlers = {
-        ["textDocument/definition"] = require("omnisharp_extended").definition_handler,
-        ["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
-        ["textDocument/references"] = require("omnisharp_extended").references_handler,
-        ["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
-      },
-      root_dir = function()
-        return vim.loop.cwd() -- current working directory
-      end,
-    },
+    -- roslyn_ls = {},
+    csharp_ls = {},
+    -- omnisharp = {
+    --   cmd = { "OmniSharp" },
+    --   enable_roslyn_analyzers = true,
+    --   organize_imports_on_format = true,
+    --   enable_import_completion = true,
+    --   handlers = {
+    --     ["textDocument/definition"] = require("omnisharp_extended").definition_handler,
+    --     ["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
+    --     ["textDocument/references"] = require("omnisharp_extended").references_handler,
+    --     ["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
+    --   },
+    --   root_dir = function()
+    --     return vim.loop.cwd() -- current working directory
+    --   end,
+    -- },
     postgres_lsp = {},
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#graphql
     graphql = {
-      filetypes = { "graphql", "gql" },
+      filetypes = { "graphql", "gql", "typescriptreact", "javascriptreact", "typescript" },
     },
     rust_analyzer = {},
     zls = {}, -- zig
