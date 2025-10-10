@@ -38,7 +38,7 @@ local getLspConfig = function()
     gopls = {},
     templ = {},
     -- roslyn_ls = {},
-    csharp_ls = {},
+    -- csharp_ls = {},
     -- omnisharp = {
     --   cmd = { "OmniSharp" },
     --   enable_roslyn_analyzers = true,
@@ -130,8 +130,8 @@ return {
       lspconfig[lsp_name].setup(config)
     end
 
-    local sign = "·"
-    -- local sign = "●"
+    -- local sign = "·"
+    local sign = "●"
     local signs = {
       [vim.diagnostic.severity.ERROR] = sign,
       [vim.diagnostic.severity.WARN] = sign,

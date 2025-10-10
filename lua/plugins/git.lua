@@ -10,6 +10,14 @@ return {
         mode = { "v" },
         desc = "Open current remote file on browser with current line selected",
       },
+      {
+        "<leader>gp",
+        function()
+          -- INFO: Run the job async
+          vim.fn.jobstart({ "gh", "pr", "view", "--web" }, { detach = true })
+        end,
+        desc = "Open current github pull request on browser",
+      },
     },
   },
   {
