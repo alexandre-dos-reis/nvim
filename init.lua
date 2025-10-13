@@ -21,6 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 require("keymaps")
 require("options")
 require("autocmds")
+require("lsp")
 require("lazy").setup("plugins", {
   checker = {
     enabled = true,

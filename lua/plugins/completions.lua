@@ -3,6 +3,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
       "luckasRanarison/tailwind-tools.nvim",
       "onsails/lspkind-nvim",
       "L3MON4D3/LuaSnip",
@@ -48,7 +49,7 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
-          { name = "vim-dadbod-completion" },
+          -- { name = "vim-dadbod-completion" },
           { name = "buffer" },
         }, {
           { name = "buffer" },
