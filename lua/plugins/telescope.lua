@@ -2,22 +2,37 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim", "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-tree/nvim-web-devicons",
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        version = "^1.0.0",
+      },
+    },
     config = function()
-      require("telescope").setup({
+      local telescope = require("telescope")
+      local builtin = require("telescope.builtin")
+      local lga_actions = require("telescope-live-grep-args.actions")
+
+      telescope.setup({
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({}),
           },
+          live_grep_args = {
+            auto_quoting = true, -- enable/disable auto-quoting
+          },
         },
       })
 
-      local builtin = require("telescope.builtin")
+      telescope.load_extension("ui-select")
+      telescope.load_extension("live_grep_args")
 
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find file name" })
       vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Fuzzy find string" })
-
-      require("telescope").load_extension("ui-select")
+      vim.keymap.set("n", "<leader>fj", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
     end,
   },
   {

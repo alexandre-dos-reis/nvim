@@ -2,20 +2,22 @@ return {
   "saghen/blink.cmp",
   dependencies = { "rafamadriz/friendly-snippets" },
   version = "1.*",
-  ---@type blink.cmp.Config
   opts = {
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
-      preset = "none",
+      preset = "default",
       ["<C-i>"] = { "show" },
-      ["<CR>"] = { "accept" },
-      ["<C-j>"] = { "select_next" },
-      ["<C-k>"] = { "select_prev" },
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
     },
     appearance = {
       nerd_font_variant = "mono",
     },
     completion = {
+      list = {
+        selection = { preselect = true, auto_insert = false },
+      },
       menu = { border = "rounded" },
       documentation = {
         window = { border = "rounded" },
@@ -26,6 +28,12 @@ return {
     signature = { window = { border = "rounded" } },
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
+      per_filetype = {
+        sql = { "snippets", "dadbod", "buffer" },
+      },
+      providers = {
+        dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+      },
     },
   },
   opts_extend = { "sources.default" },
