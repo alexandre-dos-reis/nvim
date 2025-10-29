@@ -4,16 +4,17 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
-    -- on_colors = function(c)
-    -- c.green100 = "#3c6700"
-    -- c.green300 = "#3e6700"
-    -- c.green500 = "#5c9802"
-    -- c.green700 = "#92fb00"
-    -- c.green900 = "#caffad"
-    -- c.green = c.green700
-    -- end,
     on_highlights = function(hl, c)
-      -- Telescope and browser extension
+      local bg_term = vim.env.TERMINAL_BG
+      -- Blink
+      hl.BlinkCmpMenu = {
+        bg = bg_term,
+        fg = bg_term,
+      }
+      hl.BlinkCmpMenuBorder = {
+        bg = bg_term,
+      }
+      -- } Telescope and browser extension
       hl.TelescopeNormal = {
         bg = c.bg_dark,
         fg = c.fg_dark,
