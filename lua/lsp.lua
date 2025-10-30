@@ -23,12 +23,9 @@ vim.lsp.enable({
 
 local sign = "●"
 
--- Use different layout for displaying diagnostic
--- require("lsp_lines").setup()
-
 -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
 vim.diagnostic.config({
-  -- virtual_lines = true,
+  virtual_lines = true,
   float = { border = "rounded" },
   signs = {
     text = {
@@ -53,9 +50,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.hover({ border = "rounded", silent = true })
     end, "LSP Hover definition")
 
-    set("<leader>rn", function()
-      vim.lsp.buf.rename()
-    end, "LSP rename")
+    set("<leader>rn", vim.lsp.buf.rename, "LSP rename")
 
     set("gd", function()
       require("telescope.builtin").lsp_definitions({
