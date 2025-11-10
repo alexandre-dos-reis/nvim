@@ -25,7 +25,7 @@ local sign = "●"
 
 -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
 vim.diagnostic.config({
-  virtual_lines = true,
+  virtual_lines = false,
   float = { border = "rounded" },
   signs = {
     text = {

@@ -1,3 +1,33 @@
+local ensure_installed = {
+  "html",
+  "lua",
+  "tsx",
+  "typescript",
+  "javascript",
+  "go",
+  "templ",
+  "astro",
+  "cmake",
+  "css",
+  "scss",
+  "fish",
+  "gitignore",
+  "markdown",
+  "markdown_inline",
+  "graphql",
+  "http",
+  "php",
+  "rust",
+  "sql",
+  "nix",
+  "just",
+  "terraform",
+  "nu",
+  "zig",
+  "cue",
+  "c_sharp",
+}
+
 return {
   {
     "windwp/nvim-ts-autotag",
@@ -13,37 +43,14 @@ return {
     end,
   },
   {
+    "davidmh/mdx.nvim",
+    config = true,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = {
-        "html",
-        "lua",
-        "tsx",
-        "typescript",
-        "javascript",
-        "go",
-        "templ",
-        "astro",
-        "cmake",
-        "css",
-        "scss",
-        "fish",
-        "gitignore",
-        "markdown",
-        "markdown_inline",
-        "graphql",
-        "http",
-        "php",
-        "rust",
-        "sql",
-        "nix",
-        "just",
-        "terraform",
-        "nu",
-        "zig",
-        "cue",
-        "c_sharp",
-      },
+      ensure_installed,
       highlight = {
         enable = true,
       },
@@ -51,12 +58,15 @@ return {
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
 
-      -- Mdx
-      vim.filetype.add({
-        extension = {
-          mdx = "mdx",
-        },
-      })
+      -- NOTE: Taken from https://github.com/davidmh/mdx.nvim/blob/main/after/queries/markdown/injections.scm
+      -- Register the mdx filetype
+      vim.filetype.add({ extension = { mdx = "mdx" } })
+      -- Configure treesitter to use the markdown parser for mdx files
+      vim.treesitter.language.register("markdown", "mdx")
+      -- If the current buffer has the extension mdx, but not the newly create filetype, set it
+      if vim.endswith(vim.api.nvim_buf_get_name(0), ".mdx") and vim.o.filetype ~= "mdx" then
+        vim.o.filetype = "mdx"
+      end
     end,
   },
   {
