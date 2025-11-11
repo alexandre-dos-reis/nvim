@@ -9,9 +9,16 @@ return {
       -- Blink
       hl.BlinkCmpMenu = {
         bg = bg_term,
-        fg = bg_term,
+        -- fg = bg_term,
       }
       hl.BlinkCmpMenuBorder = {
+        bg = bg_term,
+      }
+      hl.BlinkCmpDoc = {
+        bg = bg_term,
+        -- fg = bg_term,
+      }
+      hl.BlinkCmpDocBorder = {
         bg = bg_term,
       }
       -- } Telescope and browser extension

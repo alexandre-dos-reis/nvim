@@ -21,7 +21,7 @@ return {
       menu = { border = "rounded" },
       documentation = {
         window = { border = "rounded" },
-        auto_show = false,
+        auto_show = true,
       },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
