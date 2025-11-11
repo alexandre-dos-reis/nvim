@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- delete orphan buffer that are not related to tab nor windows.
+-- Delete orphan buffers, untied to tab.
 -- Save it if modified
 vim.api.nvim_create_autocmd("BufLeave", {
   pattern = "*",
