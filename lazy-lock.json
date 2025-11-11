@@ -11,10 +11,6 @@
     "branch": "main",
     "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3"
   },
-  "close-buffers.nvim": {
-    "branch": "master",
-    "commit": "3acbcad1211572342632a6c0151f839e7dead27f"
-  },
   "conform.nvim": {
     "branch": "master",
     "commit": "b4aab989db276993ea5dcb78872be494ce546521"
@@ -46,6 +42,10 @@
   "lualine.nvim": {
     "branch": "master",
     "commit": "3946f0122255bc377d14a59b27b609fb3ab25768"
+  },
+  "mdx.nvim": {
+    "branch": "main",
+    "commit": "464a74be368dce212cff02f6305845dc7f209ab3"
   },
   "mini.indentscope": {
     "branch": "main",
