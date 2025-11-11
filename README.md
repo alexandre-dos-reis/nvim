@@ -2,6 +2,10 @@
 
 - version: NVIM v0.11.5
 
+## How to
+
+- Change default branch : `gh api repos/{owner}/{repo} --method PATCH --field 'default_branch=main' --silent`
+
 ## Installation
 
 Apply git hooks with this command : `git config --local core.hooksPath .githooks/`
