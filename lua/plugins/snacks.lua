@@ -20,6 +20,8 @@ return {
     },
   },
   init = function()
+    -- Delete orphan buffers, not attach to tab nor win
+    -- TODO: Check if buffer is a real file
     vim.api.nvim_create_autocmd("BufEnter", {
       callback = function(e)
         local buf = e.buf -- or vim.api.nvim_get_current_buf()
