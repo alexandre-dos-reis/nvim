@@ -21,7 +21,7 @@ return {
   },
   init = function()
     -- Delete orphan buffers, not attach to tab nor win
-    -- TODO: Check if buffer is a real file
+    -- Ref: https://github.com/folke/snacks.nvim/blob/main/lua/snacks/bufdelete.lua
     vim.api.nvim_create_autocmd("BufEnter", {
       callback = function(e)
         local buf = e.buf -- or vim.api.nvim_get_current_buf()
@@ -35,6 +35,7 @@ return {
             win_buffers[vim.api.nvim_win_get_buf(win)] = true
           end
 
+          -- For each buffer
           Snacks.bufdelete.delete(function(b)
             if
               -- Don't delete the current buffer
@@ -45,11 +46,15 @@ return {
               return false
             end
 
-            local n = vim.api.nvim_buf_get_name(b)
+            -- Set path/name to empty name buffer
+            if vim.api.nvim_buf_get_name(b) == "" then
+              local id = string.format("%08x", math.random(0, 0xffffffff))
+              local path = vim.fs.joinpath(vim.fn.getcwd(), "unsaved-file-" .. id)
+              vim.api.nvim_buf_set_name(b, path)
+            end
 
             -- Autosave before deleting
-            if n ~= "" and vim.bo[b].modified then
-              -- Save buffer
+            if vim.bo[b].modified then
               vim.api.nvim_buf_call(b, vim.cmd.write)
             end
 
