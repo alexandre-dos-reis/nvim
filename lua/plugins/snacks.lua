@@ -30,26 +30,25 @@ return {
 
         -- Continue only for real file buffer
         if buftype == "" and name ~= "" then
-          local non_hidden_buffers = {}
+          local win_buffers = {}
           for _, win in ipairs(vim.api.nvim_list_wins()) do
-            non_hidden_buffers[vim.api.nvim_win_get_buf(win)] = true
+            win_buffers[vim.api.nvim_win_get_buf(win)] = true
           end
 
           Snacks.bufdelete.delete(function(b)
-            -- Don't delete the current buffer
-            if buf == b then
+            if
+              -- Don't delete the current buffer
+              buf == b
+              -- Don't delete buffer present in other window
+              or win_buffers[b]
+            then
               return false
             end
 
-            -- Don't delete buffer present in other window
-            if non_hidden_buffers[b] then
-              return false
-            end
+            local n = vim.api.nvim_buf_get_name(b)
 
-            -- Autosave before closing
-            if vim.bo[b].modified then
-              -- Lsp format
-              vim.lsp.buf.format({ bufnr = b })
+            -- Autosave before deleting
+            if n ~= "" and vim.bo[b].modified then
               -- Save buffer
               vim.api.nvim_buf_call(b, vim.cmd.write)
             end
