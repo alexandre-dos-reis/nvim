@@ -1,4 +1,9 @@
-local linters = { eslint = "eslint_d", oxlint = "oxlint", biome = "biomejs" }
+local linters = {
+  eslint = "eslint_d",
+  oxlint = "oxlint",
+  biome = "biomejs",
+  clippy = "clippy",
+}
 
 local config_files_by_linters = {
   [linters.eslint] = {
@@ -11,6 +16,7 @@ local config_files_by_linters = {
   },
   [linters.oxlint] = { ".oxlintrc.json" },
   [linters.biome] = { "biome.json", "biome.jsonc" },
+  [linters.clippy] = { "clippy.toml", ".clippy.toml" },
 }
 
 local js_linters = { linters.eslint, linters.oxlint, linters.biome }
@@ -20,6 +26,7 @@ local linters_by_ft = {
   typescript = js_linters,
   javascriptreact = js_linters,
   typescriptreact = js_linters,
+  rust = { linters.clippy },
 }
 
 -- This resolve the linter name based on the project config file
@@ -30,7 +37,8 @@ local resolve_linter = function(buffer, file)
     local linters_table = linters_by_ft[ft]
 
     for _, _linter in pairs(linters_table) do
-      local found = vim.fs.find(config_files_by_linters[_linter], { upward = true, path = file })
+      local found =
+        vim.fs.find(config_files_by_linters[_linter], { upward = true, path = file })
       if not vim.tbl_isempty(found) then
         return _linter
       end

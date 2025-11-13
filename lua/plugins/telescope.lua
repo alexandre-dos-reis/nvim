@@ -30,9 +30,18 @@ return {
       telescope.load_extension("ui-select")
       telescope.load_extension("live_grep_args")
 
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find file name" })
+      vim.keymap.set(
+        "n",
+        "<leader>ff",
+        builtin.find_files,
+        { desc = "Fuzzy find file name" }
+      )
       vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Fuzzy find string" })
-      vim.keymap.set("n", "<leader>fj", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+      vim.keymap.set(
+        "n",
+        "<leader>fj",
+        ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
+      )
     end,
   },
   {

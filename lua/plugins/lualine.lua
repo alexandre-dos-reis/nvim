@@ -14,9 +14,15 @@ return {
             b = { fg = colors.base1, bg = colors.base03 },
             c = { fg = colors.base00, bg = vim.env.TERMINAL_BG },
           },
-          insert = { a = { fg = colors.base03, bg = colors.warning, gui = "bold" } },
-          visual = { a = { fg = colors.base03, bg = colors.magenta, gui = "bold" } },
-          replace = { a = { fg = colors.base03, bg = colors.red, gui = "bold" } },
+          insert = {
+            a = { fg = colors.base03, bg = colors.warning, gui = "bold" },
+          },
+          visual = {
+            a = { fg = colors.base03, bg = colors.magenta, gui = "bold" },
+          },
+          replace = {
+            a = { fg = colors.base03, bg = colors.red, gui = "bold" },
+          },
           inactive = {
             a = { fg = colors.base0, bg = colors.base02, gui = "bold" },
             b = { fg = colors.base03, bg = colors.base00 },

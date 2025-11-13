@@ -49,7 +49,12 @@ set("n", "<leader>tn", ":tabn<CR>")
 set("n", "<leader>tp", ":tabp<CR>")
 
 -- tmux-sessionizer
-set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Launch tmux-sessionizer")
+set(
+  "n",
+  "<C-f>",
+  "<cmd>silent !tmux neww tmux-sessionizer<CR>",
+  "Launch tmux-sessionizer"
+)
 -- set("n", "<C-w>", "<cmd>silent !tmux neww tmux-windownizer<CR>")
 
 -- quicklist

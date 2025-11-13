@@ -7,7 +7,8 @@ return {
     "b0o/SchemaStore.nvim",
     lazy = true,
     cond = function()
-      return vim.fn.executable("vscode-json-languageserver") == 1 or vim.fn.executable("yaml-language-server") == 1
+      return vim.fn.executable("vscode-json-languageserver") == 1
+        or vim.fn.executable("yaml-language-server") == 1
     end,
   },
   {

@@ -3,7 +3,12 @@ return {
     "tpope/vim-fugitive",
     dependencies = { "tpope/vim-rhubarb" },
     keys = {
-      { "<leader>go", "<Cmd>GBrowse<CR>", mode = { "n" }, desc = "Open current remote file on browser" },
+      {
+        "<leader>go",
+        "<Cmd>GBrowse<CR>",
+        mode = { "n" },
+        desc = "Open current remote file on browser",
+      },
       {
         "<leader>go",
         ":'<,'>GBrowse<CR>",
