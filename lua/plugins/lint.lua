@@ -1,4 +1,4 @@
-local linters = { eslint = "eslint_d", oxlint = "oxlint" }
+local linters = { eslint = "eslint_d", oxlint = "oxlint", biome = "biomejs" }
 
 local config_files_by_linters = {
   [linters.eslint] = {
@@ -10,9 +10,10 @@ local config_files_by_linters = {
     "eslint.config.cts",
   },
   [linters.oxlint] = { ".oxlintrc.json" },
+  [linters.biome] = { "biome.json", "biome.jsonc" },
 }
 
-local js_linters = { linters.eslint, linters.oxlint }
+local js_linters = { linters.eslint, linters.oxlint, linters.biome }
 
 local linters_by_ft = {
   javascript = js_linters,
