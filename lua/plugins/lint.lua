@@ -1,17 +1,25 @@
+local linters = { eslint = "eslint_d", oxlint = "oxlint" }
+
+-- TODO: For the moment nvim-lint run every linters for one ft.
+-- Try to find the default linter config file and use it, then the others, ...
+-- and pass it to `try_lint`
+-- See the linters branch
+local js_linters = { linters.eslint, linters.oxlint }
+
+local linters_by_ft = {
+  javascript = js_linters,
+  typescript = js_linters,
+  javascriptreact = js_linters,
+  typescriptreact = js_linters,
+}
+
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lint = require("lint")
 
-    local js_config = { "eslint_d" }
-
-    lint.linters_by_ft = {
-      javascript = js_config,
-      typescript = js_config,
-      javascriptreact = js_config,
-      typescriptreact = js_config,
-    }
+    lint.linters_by_ft = linters_by_ft
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
@@ -23,12 +31,11 @@ return {
     })
 
     local lint_progress = function()
-      local linters = require("lint").get_running()
-      print(linters)
-      if #linters == 0 then
-        return "󰦕"
+      local running_linters = require("lint").get_running()
+      if #running_linters == 0 then
+        return "󰦕  No linters running."
       end
-      return "󱉶 " .. table.concat(linters, ", ")
+      return "󱉶  linters running: " .. table.concat(linters, ", ")
     end
 
     vim.keymap.set("n", "<leader>lt", function()
