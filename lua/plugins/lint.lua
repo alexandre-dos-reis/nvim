@@ -1,6 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
-  event = { "BufReadPre" },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lint = require("lint")
 
@@ -19,5 +19,22 @@ return {
         lint.try_lint()
       end,
     })
+
+    local lint_progress = function()
+      local linters = require("lint").get_running()
+      print(linters)
+      if #linters == 0 then
+        return "󰦕"
+      end
+      return "󱉶 " .. table.concat(linters, ", ")
+    end
+
+    vim.keymap.set("n", "<leader>lt", function()
+      lint.try_lint()
+    end, { desc = "Trigger linting for current file." })
+
+    vim.keymap.set("n", "<leader>lp", function()
+      print(lint_progress())
+    end, { desc = "Get the current running linters for the current buffer" })
   end,
 }
