@@ -35,6 +35,7 @@ return {
             win_buffers[vim.api.nvim_win_get_buf(win)] = true
           end
 
+          -- TODO: Remove
           -- For each buffer
           Snacks.bufdelete.delete({
             force = true,
