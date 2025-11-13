@@ -4,11 +4,13 @@ return {
   config = function()
     local lint = require("lint")
 
+    local js_config = { "eslint_d" }
+
     lint.linters_by_ft = {
-      javascript = { "eslint_d" },
-      typescript = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
+      javascript = js_config,
+      typescript = js_config,
+      javascriptreact = js_config,
+      typescriptreact = js_config,
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
