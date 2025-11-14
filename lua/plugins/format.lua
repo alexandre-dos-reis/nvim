@@ -1,3 +1,69 @@
+local formatters = {
+  prettier = "prettierd",
+  stylua = "stylua",
+  alejandra = "alejandra.toml",
+  beautysh = "beautysh",
+  rustfmt = "rustfmt",
+  pg_format = "pg_format",
+  terraform_fmt = "terraform_fmt",
+  gofumpt = "gofumpt",
+  golines = "golines",
+  goimports_reviser = "goimports-reviser",
+}
+
+-- local config_files_by_formatters = {
+--   [formatters.prettier] = {
+--     ".prettierrc",
+--     ".prettierrc.json",
+--     ".prettierrc.yml",
+--     ".prettierrc.yaml",
+--     ".prettierrc.json5",
+--     ".prettierrc.js",
+--     "prettier.config.js",
+--     ".prettierrc.ts",
+--     "prettier.config.ts",
+--     ".prettierrc.mjs",
+--     "prettier.config.mjs",
+--     ".prettierrc.mts",
+--     "prettier.config.mts",
+--     ".prettierrc.cjs",
+--     "prettier.config.cjs",
+--     ".prettierrc.cts",
+--     "prettier.config.cts",
+--     ".prettierrc.toml",
+--   },
+--   [formatters.stylua] = { "stylua.toml" },
+-- }
+
+local js_formatters = { formatters.prettier }
+
+local formatters_by_ft = {
+  javascript = js_formatters,
+  typescript = js_formatters,
+  javascriptreact = js_formatters,
+  typescriptreact = js_formatters,
+  css = js_formatters,
+  html = js_formatters,
+  json = js_formatters,
+  yaml = js_formatters,
+  markdown = js_formatters,
+  graphql = js_formatters,
+  lua = { formatters.stylua },
+  nix = { formatters.alejandra },
+  go = {
+    formatters.gofumpt,
+    formatters.golines,
+    formatters.goimports_reviser,
+  },
+  sh = { formatters.beautysh },
+  rust = { formatters.rustfmt },
+  sql = { formatters.pg_format },
+  terraform = { formatters.terraform_fmt },
+}
+
+-- TODO: Implement this when new js formatters will became available like oxlfmt.
+-- local resolve_formatters = function(buf, file) end
+
 return {
   "stevearc/conform.nvim",
   event = { "BufReadPre" },
@@ -10,35 +76,12 @@ return {
     local conform = require("conform")
 
     conform.setup({
-      formatters_by_ft = {
-        javascript = { "prettierd" },
-        typescript = { "prettierd" },
-        javascriptreact = { "prettierd" },
-        typescriptreact = { "prettierd" },
-        css = { "prettierd" },
-        html = { "prettierd" },
-        json = { "prettierd" },
-        yaml = { "prettierd" },
-        markdown = { "prettierd" },
-        graphql = { "prettierd" },
-        lua = { "stylua" },
-        nix = { "alejandra" },
-        go = {
-          -- This isn't working atm
-          -- "goimports-reviser",
-          "gofumpt",
-          "golines",
-        },
-        sh = { "beautysh" },
-        rust = { "rustfmt" },
-        sql = { "pg_format" },
-        terraform = { "terraform_fmt" },
-      },
+      formatters_by_ft = formatters_by_ft,
       default_format_opts = {
         lsp_format = "fallback",
       },
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 300,
       },
       format_after_save = {
         lsp_format = "fallback",

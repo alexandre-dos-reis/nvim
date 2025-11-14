@@ -19,7 +19,7 @@ local config_files_by_linters = {
   [linters.clippy] = { "clippy.toml", ".clippy.toml" },
 }
 
-local js_linters = { linters.eslint, linters.oxlint, linters.biome }
+local js_linters = { linters.oxlint, linters.eslint, linters.biome }
 
 local linters_by_ft = {
   javascript = js_linters,
@@ -34,15 +34,25 @@ local resolve_linter = function(buffer, file)
   local ft = vim.bo[buffer].ft
 
   if ft ~= "" or file ~= "" then
-    local linters_table = linters_by_ft[ft]
+    local linters_tbl = linters_by_ft[ft]
 
-    for _, _linter in pairs(linters_table) do
-      local found =
-        vim.fs.find(config_files_by_linters[_linter], { upward = true, path = file })
+    if #linters_tbl == 1 then
+      -- No need to continue as we have 1 entry.
+      return linters_tbl[0] or linters_tbl[1]
+    end
+
+    for _, _linter in pairs(linters_tbl) do
+      local found = vim.fs.find(
+        config_files_by_linters[_linter],
+        { upward = true, path = file, stop = "./dev/" }
+      )
       if not vim.tbl_isempty(found) then
         return _linter
       end
     end
+
+    -- No config file found return first entry
+    return linters_tbl[0] or linters_tbl[1]
   end
   return nil
 end
@@ -84,8 +94,9 @@ return {
       local running_linters = require("lint").get_running()
       if #running_linters == 0 then
         print("󰦕  No linters running.")
+      else
+        print("󱉶  linters running: " .. table.concat(linters, ", "))
       end
-      print("󱉶  linters running: " .. table.concat(linters, ", "))
     end, { desc = "Get the current running linters for the current buffer" })
   end,
 }
