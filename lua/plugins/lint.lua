@@ -3,6 +3,7 @@ local linters = {
   oxlint = "oxlint",
   biome = "biomejs",
   clippy = "clippy",
+  golangcilint = "golangcilint",
 }
 
 local config_files_by_linters = {
@@ -17,6 +18,12 @@ local config_files_by_linters = {
   [linters.oxlint] = { ".oxlintrc.json" },
   [linters.biome] = { "biome.json", "biome.jsonc" },
   [linters.clippy] = { "clippy.toml", ".clippy.toml" },
+  [linters.golangcilint] = {
+    ".golangci.yml",
+    ".golangci.yaml",
+    ".golangci.toml",
+    ".golangci.json",
+  },
 }
 
 local js_linters = { linters.oxlint, linters.eslint, linters.biome }
