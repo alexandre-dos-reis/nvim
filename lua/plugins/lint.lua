@@ -34,6 +34,7 @@ local linters_by_ft = {
   javascriptreact = js_linters,
   typescriptreact = js_linters,
   rust = { linters.clippy },
+  go = { linters.golangcilint },
 }
 
 -- This resolve the linter name based on the project config file
@@ -43,7 +44,16 @@ local resolve_linter = function(buffer, file)
   if ft ~= "" or file ~= "" then
     local linters_tbl = linters_by_ft[ft]
 
-    if #linters_tbl == 1 then
+    if linters_tbl == nil then
+      print(
+        "filetype : "
+          .. ft
+          .. ", is not present in the linters table! Please provide one."
+      )
+      return nil
+    end
+
+    if vim.tbl_count(linters_tbl) == 1 then
       -- No need to continue as we have 1 entry.
       return linters_tbl[0] or linters_tbl[1]
     end
@@ -83,7 +93,12 @@ return {
           return
         end
 
-        lint.try_lint(resolve_linter(e.buf, e.file))
+        local resolved_linter = resolve_linter(e.buf, e.file)
+        if resolved_linter ~= nil then
+          lint.try_lint(resolved_linter)
+        else
+          lint.try_lint()
+        end
       end,
     })
 
@@ -93,8 +108,10 @@ return {
 
       if linter_resolved ~= nil then
         print("󰦕  Lint launched with : " .. linter_resolved)
+        lint.try_lint(linter_resolved)
+      else
+        lint.try_lint()
       end
-      lint.try_lint(linter_resolved)
     end, { desc = "Trigger linting for current file." })
 
     vim.keymap.set("n", "<leader>lp", function()
