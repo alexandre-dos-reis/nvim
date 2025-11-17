@@ -22,7 +22,7 @@ return {
   init = function()
     -- Delete orphan buffers, not attach to tab nor win
     -- Ref: https://github.com/folke/snacks.nvim/blob/main/lua/snacks/bufdelete.lua
-    require("utils").augroup("Rm_orphan_buffers", function(autocmd)
+    require("utils").augroup("rm_orphan_buffers", function(autocmd)
       autocmd("BufEnter", {
         callback = function(e)
           local buf = e.buf -- or vim.api.nvim_get_current_buf()
