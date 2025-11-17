@@ -1,5 +1,5 @@
 local formatters = {
-  prettier = "prettierd",
+  prettier = "prettier", -- prettierd does not respect config files
   stylua = "stylua",
   alejandra = "alejandra.toml",
   beautysh = "beautysh",
@@ -9,6 +9,7 @@ local formatters = {
   gofumpt = "gofumpt",
   golines = "golines",
   goimports_reviser = "goimports-reviser",
+  php_cs_fixer = "php_cs_fixer",
 }
 
 -- local config_files_by_formatters = {
@@ -59,6 +60,7 @@ local formatters_by_ft = {
   rust = { formatters.rustfmt },
   sql = { formatters.pg_format },
   terraform = { formatters.terraform_fmt },
+  php = { formatters.php_cs_fixer },
 }
 
 -- TODO: Implement this when new js formatters will became available like oxlfmt.

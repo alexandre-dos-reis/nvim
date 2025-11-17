@@ -25,7 +25,7 @@ return {
     require("utils").augroup("rm_orphan_buffers", function(autocmd)
       autocmd("BufEnter", {
         callback = function(e)
-          local buf = e.buf -- or vim.api.nvim_get_current_buf()
+          local buf = e.buf
           local buftype = vim.api.nvim_get_option_value("buftype", { buf = buf })
           local name = vim.api.nvim_buf_get_name(buf)
 

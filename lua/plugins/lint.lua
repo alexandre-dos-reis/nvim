@@ -41,37 +41,37 @@ local linters_by_ft = {
 local resolve_linter = function(buffer, file)
   local ft = vim.bo[buffer].ft
 
-  if ft ~= "" or file ~= "" then
-    local linters_tbl = linters_by_ft[ft]
+  -- Only check buffer related to a file.
+  if ft == "" or file == "" then
+    return nil
+  end
 
-    if linters_tbl == nil then
-      print(
-        "filetype : "
-          .. ft
-          .. ", is not present in the linters table! Please provide one."
-      )
-      return nil
-    end
+  local linters_tbl = linters_by_ft[ft]
 
-    if vim.tbl_count(linters_tbl) == 1 then
-      -- No need to continue as we have 1 entry.
-      return linters_tbl[0] or linters_tbl[1]
-    end
+  if linters_tbl == nil then
+    error(
+      "filetype : " .. ft .. ", is not present in the linters table! Is this a mistake ?"
+    )
+    return nil
+  end
 
-    for _, _linter in pairs(linters_tbl) do
-      local found = vim.fs.find(
-        config_files_by_linters[_linter],
-        { upward = true, path = file, stop = "./dev/" }
-      )
-      if not vim.tbl_isempty(found) then
-        return _linter
-      end
-    end
-
-    -- No config file found return first entry
+  if vim.tbl_count(linters_tbl) == 1 then
+    -- No need to continue as we have 1 entry.
     return linters_tbl[0] or linters_tbl[1]
   end
-  return nil
+
+  for _, _linter in pairs(linters_tbl) do
+    local found = vim.fs.find(
+      config_files_by_linters[_linter],
+      { upward = true, path = file, stop = "./dev/" }
+    )
+    if not vim.tbl_isempty(found) then
+      return _linter
+    end
+  end
+
+  -- No config file found return first entry
+  return linters_tbl[0] or linters_tbl[1]
 end
 
 return {

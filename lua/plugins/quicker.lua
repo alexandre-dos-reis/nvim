@@ -17,7 +17,7 @@ return {
       function()
         require("quicker").collapse()
       end,
-      { desc = "Expand quickfix context" },
+      { desc = "Collapse quickfix context" },
     },
   },
 }

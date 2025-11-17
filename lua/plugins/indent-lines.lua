@@ -15,37 +15,37 @@ local excluded_filetypes = {
 local symbol_char = "·"
 
 return {
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = function()
-      local hooks = require("ibl.hooks")
-      local theme = require("solarized-osaka.colors").setup()
-
-      local color = theme.base02
-      local highlightName = "IndentBlankline"
-
-      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, highlightName, { fg = color })
-      end)
-
-      local highlight = {
-        highlightName,
-      }
-
-      return {
-        indent = {
-          tab_char = symbol_char,
-          char = symbol_char,
-          highlight = highlight,
-        },
-        scope = { enabled = false },
-        exclude = {
-          filetypes = excluded_filetypes,
-        },
-      }
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   main = "ibl",
+  --   opts = function()
+  --     local hooks = require("ibl.hooks")
+  --     local theme = require("solarized-osaka.colors").setup()
+  --
+  --     local color = theme.base02
+  --     local highlightName = "IndentBlankline"
+  --
+  --     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+  --       vim.api.nvim_set_hl(0, highlightName, { fg = color })
+  --     end)
+  --
+  --     local highlight = {
+  --       highlightName,
+  --     }
+  --
+  --     return {
+  --       indent = {
+  --         tab_char = symbol_char,
+  --         char = symbol_char,
+  --         highlight = highlight,
+  --       },
+  --       scope = { enabled = false },
+  --       exclude = {
+  --         filetypes = excluded_filetypes,
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     {
       "echasnovski/mini.indentscope",

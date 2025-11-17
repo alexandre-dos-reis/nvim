@@ -3,6 +3,5 @@ return {
   event = "VeryLazy",
   opts = {
     lazy_load = true,
-    -- other setup options
   },
 }

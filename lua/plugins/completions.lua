@@ -28,9 +28,9 @@ return {
     signature = { window = { border = "rounded" } },
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
-      per_filetype = {
-        sql = { "snippets", "dadbod", "buffer" },
-      },
+      -- per_filetype = {
+      --   sql = { "snippets", "dadbod", "buffer" },
+      -- },
       providers = {
         dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
       },
