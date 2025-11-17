@@ -14,7 +14,7 @@ return {
     config = function()
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
-      local lga_actions = require("telescope-live-grep-args.actions")
+      -- local lga_actions = require("telescope-live-grep-args.actions")
 
       telescope.setup({
         extensions = {
@@ -37,11 +37,9 @@ return {
         { desc = "Fuzzy find file name" }
       )
       vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Fuzzy find string" })
-      vim.keymap.set(
-        "n",
-        "<leader>fj",
-        ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
-      )
+      vim.keymap.set("n", "<leader>fj", function()
+        require("telescope").extensions.live_grep_args.live_grep_args()
+      end)
     end,
   },
   {
