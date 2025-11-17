@@ -37,39 +37,60 @@ vim.diagnostic.config({
   },
 })
 
+local utils = require("utils")
+
 -- keymap on buffer attach
-vim.api.nvim_create_autocmd("LspAttach", {
-  desc = "LSP actions",
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(event)
-    local set = function(lhs, rhs, desc)
-      vim.keymap.set("n", lhs, rhs, { buffer = event.buf, desc = desc or nil })
-    end
-
-    set("K", function()
-      vim.lsp.buf.hover({ border = "rounded", silent = true })
-    end, "LSP Hover definition")
-
-    set("<leader>rn", vim.lsp.buf.rename, "LSP rename")
-
-    set("gd", function()
-      require("telescope.builtin").lsp_definitions({
-        jump_type = "tab",
+utils.augroup("UserLspConfig", function(autocmd)
+  autocmd("LspAttach", {
+    desc = "LSP actions",
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(_)
+      utils.set_keymaps({
+        {
+          "n",
+          "K",
+          function()
+            vim.lsp.buf.hover({ border = "rounded", silent = true })
+          end,
+          "LSP Hover definition",
+        },
+        { "n", "<leader>rn", vim.lsp.buf.rename, "LSP rename" },
+        {
+          "n",
+          "gd",
+          function()
+            require("telescope.builtin").lsp_definitions({
+              jump_type = "tab",
+            })
+          end,
+          "LSP [g]o to [d]efinitions",
+        },
+        {
+          "n",
+          "gr",
+          function()
+            require("telescope.builtin").lsp_references()
+          end,
+          "LSP [g]o to [r]eferences",
+        },
+        { "n", "<leader>ca", vim.lsp.buf.code_action, "Show [c]ode [a]ctions" },
+        {
+          "n",
+          "<C-e>",
+          function()
+            vim.diagnostic.jump({ count = 1, float = true })
+          end,
+          "Go to next diagnostic",
+        },
+        {
+          "n",
+          "E",
+          function()
+            vim.diagnostic.jump({ count = -1, float = true })
+          end,
+          "Go to previous diagnostic",
+        },
       })
-    end, "LSP [g]o to [d]efinitions")
-
-    set("gr", function()
-      require("telescope.builtin").lsp_references()
-    end, "LSP [g]o to [r]eferences")
-
-    set("<leader>ca", vim.lsp.buf.code_action, "Show [c]ode [a]ctions")
-
-    set("<C-e>", function()
-      vim.diagnostic.jump({ count = 1, float = true })
-    end, "Go to next diagnostic")
-
-    set("E", function()
-      vim.diagnostic.jump({ count = -1, float = true })
-    end, "Go to previous diagnostic")
-  end,
-})
+    end,
+  })
+end)

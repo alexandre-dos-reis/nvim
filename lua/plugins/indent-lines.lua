@@ -66,13 +66,15 @@ return {
         }
       end,
       init = function()
-        vim.api.nvim_create_autocmd("FileType", {
-          pattern = excluded_filetypes,
-          callback = function()
-            ---@diagnostic disable-next-line: inject-field
-            vim.b.miniindentscope_disable = true
-          end,
-        })
+        require("utils").augroup("Indent-lines", function(autocmd)
+          autocmd("FileType", {
+            pattern = excluded_filetypes,
+            callback = function()
+              ---@diagnostic disable-next-line: inject-field
+              vim.b.miniindentscope_disable = true
+            end,
+          })
+        end)
       end,
     },
   },

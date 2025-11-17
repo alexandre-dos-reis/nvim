@@ -22,49 +22,51 @@ return {
   init = function()
     -- Delete orphan buffers, not attach to tab nor win
     -- Ref: https://github.com/folke/snacks.nvim/blob/main/lua/snacks/bufdelete.lua
-    vim.api.nvim_create_autocmd("BufEnter", {
-      callback = function(e)
-        local buf = e.buf -- or vim.api.nvim_get_current_buf()
-        local buftype = vim.api.nvim_get_option_value("buftype", { buf = buf })
-        local name = vim.api.nvim_buf_get_name(buf)
+    require("utils").augroup("Rm_orphan_buffers", function(autocmd)
+      autocmd("BufEnter", {
+        callback = function(e)
+          local buf = e.buf -- or vim.api.nvim_get_current_buf()
+          local buftype = vim.api.nvim_get_option_value("buftype", { buf = buf })
+          local name = vim.api.nvim_buf_get_name(buf)
 
-        -- Continue only for real file buffer
-        if buftype == "" and name ~= "" then
-          local win_buffers = {}
-          for _, win in ipairs(vim.api.nvim_list_wins()) do
-            win_buffers[vim.api.nvim_win_get_buf(win)] = true
-          end
+          -- Continue only for real file buffer
+          if buftype == "" and name ~= "" then
+            local win_buffers = {}
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              win_buffers[vim.api.nvim_win_get_buf(win)] = true
+            end
 
-          -- TODO: Remove
-          -- For each buffer
-          Snacks.bufdelete.delete({
-            force = true,
-            filter = function(b)
-              if
-                -- Don't delete the current buffer
-                buf == b
-                -- Don't delete buffer present in other window
-                or win_buffers[b]
-              then
-                return false
-              end
+            -- TODO: Remove
+            -- For each buffer
+            Snacks.bufdelete.delete({
+              force = true,
+              filter = function(b)
+                if
+                  -- Don't delete the current buffer
+                  buf == b
+                  -- Don't delete buffer present in other window
+                  or win_buffers[b]
+                then
+                  return false
+                end
 
-              -- Delete orphan code buffer
-              if vim.api.nvim_buf_get_name(b) == "" then
+                -- Delete orphan code buffer
+                if vim.api.nvim_buf_get_name(b) == "" then
+                  return true
+                end
+
+                -- Autosave before deleting
+                if vim.bo[b].modified then
+                  vim.api.nvim_buf_call(b, vim.cmd.write)
+                end
+
+                -- Delete
                 return true
-              end
-
-              -- Autosave before deleting
-              if vim.bo[b].modified then
-                vim.api.nvim_buf_call(b, vim.cmd.write)
-              end
-
-              -- Delete
-              return true
-            end,
-          })
-        end
-      end,
-    })
+              end,
+            })
+          end
+        end,
+      })
+    end)
   end,
 }

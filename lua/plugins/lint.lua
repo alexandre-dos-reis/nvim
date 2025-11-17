@@ -82,25 +82,24 @@ return {
 
     lint.linters_by_ft = linters_by_ft
 
-    local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+    require("utils").augroup("lint", function(autocmd)
+      autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        callback = function(e)
+          local ft = vim.bo[e.buf].ft
 
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-      group = lint_augroup,
-      callback = function(e)
-        local ft = vim.bo[e.buf].ft
+          if linters_by_ft[ft] == nil then
+            return
+          end
 
-        if linters_by_ft[ft] == nil then
-          return
-        end
-
-        local resolved_linter = resolve_linter(e.buf, e.file)
-        if resolved_linter ~= nil then
-          lint.try_lint(resolved_linter)
-        else
-          lint.try_lint()
-        end
-      end,
-    })
+          local resolved_linter = resolve_linter(e.buf, e.file)
+          if resolved_linter ~= nil then
+            lint.try_lint(resolved_linter)
+          else
+            lint.try_lint()
+          end
+        end,
+      })
+    end)
 
     vim.keymap.set("n", "<leader>lt", function()
       local buf = vim.api.nvim_get_current_buf()
