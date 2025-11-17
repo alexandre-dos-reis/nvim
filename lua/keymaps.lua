@@ -17,7 +17,7 @@ require("utils").set_keymaps({
   -- recenter screen on search
   { "n", "n", "nzzzv" },
   { "n", "N", "Nzzzv" },
-  -- dont yanwhen x is pressed
+  -- dont yank when x is pressed
   { "n", "x", '"_x' },
   -- Increment and decrement
   { "n", "<leader>+", "<C-a>", "Increment number" },
@@ -35,6 +35,27 @@ require("utils").set_keymaps({
   { "n", "<leader>tq", ":tabclose<CR>" },
   { "n", "<leader>tn", ":tabn<CR>" },
   { "n", "<leader>tp", ":tabp<CR>" },
+  -- Terminal related
+  {
+    "n",
+    "<leader>tt",
+    function()
+      vim.cmd.vnew()
+      vim.cmd.term()
+      vim.cmd.wincmd("J")
+      vim.api.nvim_win_set_height(0, 8)
+      vim.cmd.startinsert()
+    end,
+  },
+  {
+    "t",
+    "<esc><esc>",
+    function()
+      ---@diagnostic disable-next-line: param-type-mismatch
+      pcall(vim.cmd, "bdelete!")
+    end,
+    "Close terminal",
+  },
   -- tmux-sessionizer
   {
     "n",
@@ -47,8 +68,7 @@ require("utils").set_keymaps({
     "n",
     "<C-n>",
     function()
-      local success = pcall(vim.cmd.cnext)
-      if not success then
+      if not pcall(vim.cmd.cnext) then
         vim.cmd.cfirst()
       end
     end,
@@ -58,8 +78,7 @@ require("utils").set_keymaps({
     "n",
     "<C-p>",
     function()
-      local success = pcall(vim.cmd.cprev)
-      if not success then
+      if not pcall(vim.cmd.cprev) then
         vim.cmd.clast()
       end
     end,
