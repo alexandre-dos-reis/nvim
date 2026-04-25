@@ -3,7 +3,9 @@ vim.lsp.enable({
   "nushell",
   "ansiblels",
   "lua_ls",
-  "vtsls", -- "vtsls", -- or "tsgo" or "vtsls" or "ts_ls"
+  "tsgo", -- "tsgo" or "vtsls" or "ts_ls"
+  "oxlint",
+  "prismals",
   "cssls",
   "html",
   "astro",

@@ -4,6 +4,7 @@ local ensure_installed = {
   "tsx",
   "typescript",
   "javascript",
+  "prisma",
   "go",
   "templ",
   "astro",
@@ -42,11 +43,11 @@ return {
       })
     end,
   },
-  {
-    "davidmh/mdx.nvim",
-    config = true,
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
+  -- {
+  --   "davidmh/mdx.nvim",
+  --   config = true,
+  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -60,16 +61,16 @@ return {
 
       -- NOTE: Taken from https://github.com/davidmh/mdx.nvim/blob/main/after/queries/markdown/injections.scm
       -- Register the mdx filetype
-      vim.filetype.add({ extension = { mdx = "mdx" } })
+      -- vim.filetype.add({ extension = { mdx = "mdx" } })
       -- Configure treesitter to use the markdown parser for mdx files
-      vim.treesitter.language.register("markdown", "mdx")
+      -- vim.treesitter.language.register("markdown", "mdx")
       -- If the current buffer has the extension mdx, but not the newly create filetype, set it
-      if
-        vim.endswith(vim.api.nvim_buf_get_name(0), ".mdx")
-        and vim.o.filetype ~= "mdx"
-      then
-        vim.o.filetype = "mdx"
-      end
+      -- if
+      --   vim.endswith(vim.api.nvim_buf_get_name(0), ".mdx")
+      --   and vim.o.filetype ~= "mdx"
+      -- then
+      --   vim.o.filetype = "mdx"
+      -- end
     end,
   },
   {
