@@ -3,8 +3,8 @@ vim.lsp.enable({
   "nushell",
   "ansiblels",
   "lua_ls",
-  "tsgo", -- "tsgo" or "vtsls" or "ts_ls"
-  "oxlint",
+  "vtsls", -- "tsgo" or "vtsls" or "ts_ls"
+  -- "oxlint",
   "prismals",
   "cssls",
   "html",
@@ -17,7 +17,7 @@ vim.lsp.enable({
   "gopls",
   "templ",
   "postgres_lsp",
-  "graphql",
+  -- "graphql",
   "rust_analyzer",
   "zls",
   "terraformls",
