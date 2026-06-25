@@ -48,7 +48,8 @@ utils.augroup("UserLspConfig", function(autocmd)
   autocmd("LspAttach", {
     desc = "LSP actions",
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(_)
+    callback = function(args)
+      -- vim.lsp.semantic_tokens.stop(args.buf, args.data.client_id)
       utils.set_keymaps({
         {
           "n",
