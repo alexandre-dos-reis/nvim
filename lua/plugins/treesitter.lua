@@ -51,16 +51,10 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    branch = "main",
     lazy = false,
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = ensure_installed,
-        sync_install = false,
-        auto_install = false,
-        ignore_install = {},
-        modules = {},
-        highlight = { enable = true },
-      })
+      require("nvim-treesitter").install(ensure_installed)
     end,
   },
   {

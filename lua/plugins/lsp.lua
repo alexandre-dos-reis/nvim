@@ -22,17 +22,4 @@ return {
       },
     },
   },
-  -- {
-  --   -- NOTE: Lsp is working, but treesitter is not...
-  --   "Ripple-TS/ripple",
-  --   config = function(plugin)
-  --     vim.opt.rtp:append(plugin.dir .. "/packages/nvim-plugin")
-  --
-  --     vim.filetype.add({ extension = { ripple = "ripple" } })
-  --     -- Configure treesitter to use the markdown parser for mdx files
-  --     vim.treesitter.language.register("ripple", "ripple")
-  --
-  --     require("ripple").setup(plugin)
-  --   end,
-  -- },
 }

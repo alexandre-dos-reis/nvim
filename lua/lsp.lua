@@ -3,7 +3,7 @@ vim.lsp.enable({
   "nushell",
   "ansiblels",
   "lua_ls",
-  "vtsls", -- "tsgo" or "vtsls" or "ts_ls"
+  "tsgo", -- "tsgo" or "vtsls" or "ts_ls"
   -- "oxlint",
   "prismals",
   "cssls",
@@ -50,6 +50,12 @@ utils.augroup("UserLspConfig", function(autocmd)
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(_)
       utils.set_keymaps({
+        {
+          "n",
+          "<leader>lr",
+          ":lsp restart<CR>",
+          "restart LSP",
+        },
         {
           "n",
           "K",

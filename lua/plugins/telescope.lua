@@ -52,6 +52,7 @@ return {
       require("telescope").setup({
         defaults = {
           sorting_strategy = "ascending",
+          preview = { treesitter = false },
         },
         extensions = {
           file_browser = {

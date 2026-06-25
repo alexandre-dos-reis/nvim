@@ -12,7 +12,9 @@ return {
     local selectedFg = theme.base0
     local terminalBg = vim.env.TERMINAL_BG
 
-    local topbarBg = theme.base02
+    -- This match the wallpaper color
+    local topbarBg = "#002A36"
+    -- local topbarBg = theme.base02
 
     local unselectedBg = theme.base03
     local unselectedFg = theme.base01
