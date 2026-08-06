@@ -35,6 +35,7 @@ o.wrap = false -- No Wrap lines
 o.swapfile = false
 o.foldenable = false
 o.undofile = true -- Persist undo after closing nvim
+o.autoread = true
 
 -- split windows
 o.splitright = true
