@@ -27,6 +27,7 @@ local ensure_installed = {
   "zig",
   "cue",
   "c_sharp",
+  "ruby",
 }
 
 return {

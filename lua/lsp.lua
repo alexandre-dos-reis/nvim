@@ -6,6 +6,7 @@ vim.lsp.enable({
   "tsgo", -- "tsgo" or "vtsls" or "ts_ls"
   -- "oxlint",
   "prismals",
+  "cue",
   "cssls",
   "html",
   "astro",
@@ -23,6 +24,8 @@ vim.lsp.enable({
   "terraformls",
   "nixd",
   "nushell",
+  "ruby_lsp",
+  "solargraph",
 })
 
 local sign = "●"
